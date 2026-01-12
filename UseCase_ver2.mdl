@@ -137,7 +137,7 @@
 			quidu      	"692C56D90255")
 		    (object Dependency_Relationship
 			quid       	"692C576603DE"
-			stereotype 	"include"
+			stereotype 	"extend"
 			supplier   	"Use Case View::Просмотр списка конкурсов"
 			quidu      	"692C499F01A2")))
 	    (object UseCase "Управление источниками"
@@ -153,7 +153,7 @@
 		visible_modules 	(list dependency_list
 		    (object Dependency_Relationship
 			quid       	"692C559A0169"
-			stereotype 	"include"
+			stereotype 	"extend"
 			supplier   	"Use Case View::Функционал администратора"
 			quidu      	"692C555800DC")))
 	    (object UseCase "Управление пользователями"
@@ -161,7 +161,7 @@
 		visible_modules 	(list dependency_list
 		    (object Dependency_Relationship
 			quid       	"692C55AF0206"
-			stereotype 	"include"
+			stereotype 	"extend"
 			supplier   	"Use Case View::Функционал администратора"
 			quidu      	"692C555800DC")))
 	    (object UseCase "Функционал администратора"
@@ -185,13 +185,18 @@
 			supplier   	"Use Case View::Авторизация"
 			quidu      	"692C5640007F")))
 	    (object UseCase "Функционал авторизованного пользователя"
-		quid       	"692C56D90255")
+		quid       	"692C56D90255"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"6964F58002E2"
+			supplier   	"Use Case View::Авторизация"
+			quidu      	"692C5640007F")))
 	    (object UseCase "Обновление списка конкурсов"
 		quid       	"692C585600C7"
 		visible_modules 	(list dependency_list
 		    (object Dependency_Relationship
 			quid       	"692C586F0045"
-			stereotype 	"extend"
+			stereotype 	"include"
 			supplier   	"Use Case View::Просмотр списка конкурсов"
 			quidu      	"692C499F01A2")))
 	    (object Association "$UNNAMED$0"
@@ -337,7 +342,19 @@
 		    (object Role "$UNNAMED$35"
 			quid       	"692D54140364"
 			supplier   	"Use Case View::База данных конкурсов с параметрами"
-			quidu      	"692B220300E3"))))
+			quidu      	"692B220300E3")))
+	    (object Association "$UNNAMED$36"
+		quid       	"6964F5840370"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$37"
+			quid       	"6964F58501F0"
+			supplier   	"Use Case View::Авторизация"
+			quidu      	"692C5640007F"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$38"
+			quid       	"6964F58501F6"
+			supplier   	"Use Case View::Функционал авторизованного пользователя"
+			quidu      	"692C56D90255"))))
 	logical_presentations 	(list unit_reference_list
 	    (object UseCaseDiagram "Main"
 		quid       	"39C9261001B7"
@@ -659,7 +676,7 @@
 			    nlines     	1
 			    max_width  	450
 			    justify    	0
-			    label      	"<<include>>"
+			    label      	"<<extend>>"
 			    pctDist    	0.126658
 			    height     	87
 			    orientation 	0)
@@ -700,8 +717,11 @@
 			quidu      	"692C52E2005A"
 			annotation 	8
 			autoResize 	TRUE)
-		    (object UseCaseView "Use Case View::Функционал авторизованного пользователя" @16
-			location   	(1360, 1536)
+		    (object ClassView "Class" "Use Case View::Неавторизованный пользователь" @16
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(608, 416)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -714,6 +734,384 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@16
+			    location   	(608, 576)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	362
+			    justify    	0
+			    label      	"Неавторизованный пользователь")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"692B21C70097"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::Разработчик/Администратор" @17
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(384, 2080)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@17
+			    location   	(384, 2240)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	362
+			    justify    	0
+			    label      	"Разработчик/Администратор")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"692B21DA0134"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object UseCaseView "Use Case View::Функционал администратора" @18
+			location   	(1376, 2096)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@18
+			    location   	(1376, 2234)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Функционал администратора")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"692C555800DC"
+			height     	118)
+		    (object AssociationViewNew "$UNNAMED$0" @19
+			location   	(852, 2086)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"692C55660239"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$1" @20
+				Parent_View 	@19
+				location   	(180, 422)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"692C55670048"
+				client     	@19
+				supplier   	@18
+				vertices   	(list Points
+				    (852, 2086)
+				    (1264, 2092))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$2" @21
+				Parent_View 	@19
+				location   	(180, 422)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"692C5567004A"
+				client     	@19
+				supplier   	@17
+				vertices   	(list Points
+				    (852, 2086)
+				    (441, 2080))
+				line_style 	0)))
+		    (object DependencyView "" @22
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @23
+			    Parent_View 	@22
+			    location   	(987, 2255)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<extend>>"
+			    pctDist    	0.500000
+			    height     	120
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"692C559A0169"
+			client     	@5
+			supplier   	@18
+			vertices   	(list Points
+			    (948, 2438)
+			    (1173, 2259))
+			line_style 	0)
+		    (object DependencyView "" @24
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @25
+			    Parent_View 	@24
+			    location   	(1864, 2298)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<extend>>"
+			    pctDist    	0.119943
+			    height     	129
+			    orientation 	1)
+			line_color 	3342489
+			quidu      	"692C55AF0206"
+			client     	@6
+			supplier   	@18
+			vertices   	(list Points
+			    (1813, 2422)
+			    (1593, 2259))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Обновление списка конкурсов" @26
+			location   	(2208, 1440)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@26
+			    location   	(2208, 1578)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Обновление списка конкурсов")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"692C585600C7"
+			height     	118)
+		    (object DependencyView "" @27
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @28
+			    Parent_View 	@27
+			    location   	(2028, 1305)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.191736
+			    height     	80
+			    orientation 	1)
+			line_color 	3342489
+			quidu      	"692C586F0045"
+			client     	@26
+			supplier   	@1
+			vertices   	(list Points
+			    (2098, 1407)
+			    (1617, 1269))
+			line_style 	0)
+		    (object ClassView "Class" "Use Case View::База данных конкурсов с параметрами" @29
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2736, 1376)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@29
+			    location   	(2736, 1536)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	462
+			    justify    	0
+			    label      	"База данных конкурсов с параметрами")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"692B220300E3"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$30" @30
+			location   	(2356, 2082)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"692D54090265"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$31" @31
+				Parent_View 	@30
+				location   	(-380, 706)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"692D540A01EC"
+				client     	@30
+				supplier   	@18
+				vertices   	(list Points
+				    (2356, 2082)
+				    (1484, 2092))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$32" @32
+				Parent_View 	@30
+				location   	(-380, 706)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"692D540A01F2"
+				client     	@30
+				supplier   	@29
+				vertices   	(list Points
+				    (2356, 2082)
+				    (2736, 2078)
+				    (2736, 1586))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$33" @33
+			location   	(2496, 1401)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"692D54140033"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$34" @34
+				Parent_View 	@33
+				location   	(-240, 25)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"692D54140360"
+				client     	@33
+				supplier   	@26
+				vertices   	(list Points
+				    (2496, 1401)
+				    (2316, 1423))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$35" @35
+				Parent_View 	@33
+				location   	(-240, 25)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"692D54140364"
+				client     	@33
+				supplier   	@29
+				vertices   	(list Points
+				    (2496, 1401)
+				    (2677, 1380))
+				line_style 	0)))
+		    (object UseCaseView "Use Case View::Функционал авторизованного пользователя" @36
+			location   	(1360, 1536)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@36
 			    location   	(1360, 1674)
 			    anchor_loc 	1
 			    nlines     	2
@@ -725,7 +1123,7 @@
 			fill_color 	13434879
 			quidu      	"692C56D90255"
 			height     	118)
-		    (object AssociationViewNew "$UNNAMED$12" @17
+		    (object AssociationViewNew "$UNNAMED$12" @37
 			location   	(869, 1536)
 			font       	(object Font
 			    size       	10
@@ -741,31 +1139,31 @@
 			line_color 	3342489
 			quidu      	"692C570C028B"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$13" @18
-				Parent_View 	@17
+			    (object RoleView "$UNNAMED$13" @38
+				Parent_View 	@37
 				location   	(453, 240)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"692C570D013D"
-				client     	@17
-				supplier   	@16
+				client     	@37
+				supplier   	@36
 				vertices   	(list Points
 				    (869, 1536)
 				    (1250, 1536))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$14" @19
-				Parent_View 	@17
+			    (object RoleView "$UNNAMED$14" @39
+				Parent_View 	@37
 				location   	(453, 240)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"692C570D013F"
-				client     	@17
+				client     	@37
 				supplier   	@15
 				vertices   	(list Points
 				    (869, 1536)
 				    (489, 1536))
 				line_style 	0)))
-		    (object DependencyView "" @20
+		    (object DependencyView "" @40
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -776,8 +1174,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			stereotype 	(object SegLabel @21
-			    Parent_View 	@20
+			stereotype 	(object SegLabel @41
+			    Parent_View 	@40
 			    location   	(1161, 1395)
 			    font       	(object Font
 				size       	10
@@ -801,70 +1199,12 @@
 			line_color 	3342489
 			quidu      	"692C571001BD"
 			client     	@1
-			supplier   	@16
+			supplier   	@36
 			vertices   	(list Points
 			    (1360, 1363)
 			    (1360, 1477))
 			line_style 	0)
-		    (object ClassView "Class" "Use Case View::Неавторизованный пользователь" @22
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(608, 416)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@22
-			    location   	(608, 576)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	362
-			    justify    	0
-			    label      	"Неавторизованный пользователь")
-			icon       	"Actor"
-			icon_style 	"Icon"
-			line_color 	3342489
-			quidu      	"692B21C70097"
-			annotation 	8
-			autoResize 	TRUE)
-		    (object ClassView "Class" "Use Case View::Разработчик/Администратор" @23
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(384, 2080)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@23
-			    location   	(384, 2240)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	362
-			    justify    	0
-			    label      	"Разработчик/Администратор")
-			icon       	"Actor"
-			icon_style 	"Icon"
-			line_color 	3342489
-			quidu      	"692B21DA0134"
-			annotation 	8
-			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$24" @24
+		    (object AssociationViewNew "$UNNAMED$24" @42
 			location   	(761, 1867)
 			font       	(object Font
 			    size       	10
@@ -880,32 +1220,32 @@
 			line_color 	3342489
 			quidu      	"692D53AC00BD"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$25" @25
-				Parent_View 	@24
+			    (object RoleView "$UNNAMED$25" @43
+				Parent_View 	@42
 				location   	(377, -213)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"692D53AC035F"
-				client     	@24
-				supplier   	@16
+				client     	@42
+				supplier   	@36
 				vertices   	(list Points
 				    (761, 1867)
 				    (1082, 1690))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$26" @26
-				Parent_View 	@24
+			    (object RoleView "$UNNAMED$26" @44
+				Parent_View 	@42
 				location   	(377, -213)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"692D53AC0366"
-				client     	@24
-				supplier   	@23
+				client     	@42
+				supplier   	@17
 				vertices   	(list Points
 				    (761, 1867)
 				    (441, 2044))
 				line_style 	0)))
-		    (object UseCaseView "Use Case View::Авторизация" @27
-			location   	(1584, 416)
+		    (object UseCaseView "Use Case View::Авторизация" @45
+			location   	(1568, 416)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -917,8 +1257,8 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@27
-			    location   	(1584, 554)
+			    Parent_View 	@45
+			    location   	(1568, 554)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
@@ -929,8 +1269,8 @@
 			fill_color 	13434879
 			quidu      	"692C5640007F"
 			height     	118)
-		    (object AssociationViewNew "$UNNAMED$6" @28
-			location   	(1069, 416)
+		    (object AssociationViewNew "$UNNAMED$6" @46
+			location   	(1061, 416)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -945,31 +1285,31 @@
 			line_color 	3342489
 			quidu      	"692C564C026D"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$7" @29
-				Parent_View 	@28
-				location   	(381, 32)
+			    (object RoleView "$UNNAMED$7" @47
+				Parent_View 	@46
+				location   	(373, 32)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"692C564D0195"
-				client     	@28
-				supplier   	@27
+				client     	@46
+				supplier   	@45
 				vertices   	(list Points
-				    (1069, 416)
-				    (1473, 416))
+				    (1061, 416)
+				    (1458, 416))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$8" @30
-				Parent_View 	@28
-				location   	(381, 32)
+			    (object RoleView "$UNNAMED$8" @48
+				Parent_View 	@46
+				location   	(373, 32)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"692C564D0197"
-				client     	@28
-				supplier   	@22
+				client     	@46
+				supplier   	@16
 				vertices   	(list Points
-				    (1069, 416)
+				    (1061, 416)
 				    (665, 416))
 				line_style 	0)))
-		    (object DependencyView "" @31
+		    (object DependencyView "" @49
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -980,9 +1320,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			stereotype 	(object SegLabel @32
-			    Parent_View 	@31
-			    location   	(1389, 200)
+			stereotype 	(object SegLabel @50
+			    Parent_View 	@49
+			    location   	(1382, 200)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -1005,12 +1345,12 @@
 			line_color 	3342489
 			quidu      	"692C5668003E"
 			client     	@8
-			supplier   	@27
+			supplier   	@45
 			vertices   	(list Points
-			    (1209, 252)
-			    (1474, 367))
+			    (1209, 253)
+			    (1457, 364))
 			line_style 	0)
-		    (object DependencyView "" @33
+		    (object DependencyView "" @51
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -1021,9 +1361,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			stereotype 	(object SegLabel @34
-			    Parent_View 	@33
-			    location   	(1753, 204)
+			stereotype 	(object SegLabel @52
+			    Parent_View 	@51
+			    location   	(1747, 202)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -1046,255 +1386,13 @@
 			line_color 	3342489
 			quidu      	"692C566A0286"
 			client     	@7
-			supplier   	@27
+			supplier   	@45
 			vertices   	(list Points
-			    (1891, 269)
-			    (1692, 360))
+			    (1891, 266)
+			    (1676, 362))
 			line_style 	0)
-		    (object UseCaseView "Use Case View::Функционал администратора" @35
-			location   	(1376, 2096)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@35
-			    location   	(1376, 2234)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	630
-			    justify    	0
-			    label      	"Функционал администратора")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"692C555800DC"
-			height     	118)
-		    (object AssociationViewNew "$UNNAMED$0" @36
-			location   	(852, 2086)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"692C55660239"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$1" @37
-				Parent_View 	@36
-				location   	(180, 422)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"692C55670048"
-				client     	@36
-				supplier   	@35
-				vertices   	(list Points
-				    (852, 2086)
-				    (1264, 2092))
-				line_style 	0)
-			    (object RoleView "$UNNAMED$2" @38
-				Parent_View 	@36
-				location   	(180, 422)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"692C5567004A"
-				client     	@36
-				supplier   	@23
-				vertices   	(list Points
-				    (852, 2086)
-				    (441, 2080))
-				line_style 	0)))
-		    (object DependencyView "" @39
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			stereotype 	(object SegLabel @40
-			    Parent_View 	@39
-			    location   	(987, 2255)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				charSet    	204
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    anchor     	10
-			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	450
-			    justify    	0
-			    label      	"<<include>>"
-			    pctDist    	0.500000
-			    height     	120
-			    orientation 	0)
-			line_color 	3342489
-			quidu      	"692C559A0169"
-			client     	@5
-			supplier   	@35
-			vertices   	(list Points
-			    (948, 2438)
-			    (1173, 2259))
-			line_style 	0)
-		    (object DependencyView "" @41
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			stereotype 	(object SegLabel @42
-			    Parent_View 	@41
-			    location   	(1930, 2329)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				charSet    	204
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    anchor     	10
-			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	450
-			    justify    	0
-			    label      	"<<include>>"
-			    pctDist    	-0.140645
-			    height     	145
-			    orientation 	1)
-			line_color 	3342489
-			quidu      	"692C55AF0206"
-			client     	@6
-			supplier   	@35
-			vertices   	(list Points
-			    (1813, 2422)
-			    (1593, 2259))
-			line_style 	0)
-		    (object UseCaseView "Use Case View::Обновление списка конкурсов" @43
-			location   	(2208, 1440)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@43
-			    location   	(2208, 1578)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	630
-			    justify    	0
-			    label      	"Обновление списка конкурсов")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"692C585600C7"
-			height     	118)
-		    (object DependencyView "" @44
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			stereotype 	(object SegLabel @45
-			    Parent_View 	@44
-			    location   	(2028, 1305)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				charSet    	204
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    anchor     	10
-			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	450
-			    justify    	0
-			    label      	"<<extend>>"
-			    pctDist    	0.191736
-			    height     	80
-			    orientation 	1)
-			line_color 	3342489
-			quidu      	"692C586F0045"
-			client     	@43
-			supplier   	@1
-			vertices   	(list Points
-			    (2098, 1407)
-			    (1617, 1269))
-			line_style 	0)
-		    (object ClassView "Class" "Use Case View::База данных конкурсов с параметрами" @46
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(2736, 1376)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@46
-			    location   	(2736, 1536)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	462
-			    justify    	0
-			    label      	"База данных конкурсов с параметрами")
-			icon       	"Actor"
-			icon_style 	"Icon"
-			line_color 	3342489
-			quidu      	"692B220300E3"
-			annotation 	8
-			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$27" @47
-			location   	(2646, 416)
+		    (object AssociationViewNew "$UNNAMED$27" @53
+			location   	(2638, 415)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -1309,33 +1407,33 @@
 			line_color 	3342489
 			quidu      	"692D53FC013A"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$28" @48
-				Parent_View 	@47
-				location   	(-90, -960)
+			    (object RoleView "$UNNAMED$28" @54
+				Parent_View 	@53
+				location   	(-98, -961)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"692D53FD00EC"
-				client     	@47
-				supplier   	@27
+				client     	@53
+				supplier   	@45
 				vertices   	(list Points
-				    (2646, 416)
-				    (1692, 416))
+				    (2638, 415)
+				    (1676, 414))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$29" @49
-				Parent_View 	@47
-				location   	(-90, -960)
+			    (object RoleView "$UNNAMED$29" @55
+				Parent_View 	@53
+				location   	(-98, -961)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"692D53FD00F2"
-				client     	@47
-				supplier   	@46
+				client     	@53
+				supplier   	@29
 				vertices   	(list Points
-				    (2646, 416)
-				    (2720, 416)
+				    (2638, 415)
+				    (2719, 415)
 				    (2732, 1295))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$30" @50
-			location   	(2356, 2082)
+		    (object AssociationViewNew "$UNNAMED$36" @56
+			location   	(431, 926)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -1348,72 +1446,33 @@
 			    default_color 	TRUE)
 			stereotype 	TRUE
 			line_color 	3342489
-			quidu      	"692D54090265"
+			quidu      	"6964F5840370"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$31" @51
-				Parent_View 	@50
-				location   	(-380, 706)
+			    (object RoleView "$UNNAMED$37" @57
+				Parent_View 	@56
+				location   	(-929, -610)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"692D540A01EC"
-				client     	@50
-				supplier   	@35
+				quidu      	"6964F58501F0"
+				client     	@56
+				supplier   	@45
 				vertices   	(list Points
-				    (2356, 2082)
-				    (1484, 2092))
+				    (431, 926)
+				    (431, 866)
+				    (1458, 455))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$32" @52
-				Parent_View 	@50
-				location   	(-380, 706)
+			    (object RoleView "$UNNAMED$38" @58
+				Parent_View 	@56
+				location   	(-929, -610)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"692D540A01F2"
-				client     	@50
-				supplier   	@46
+				quidu      	"6964F58501F6"
+				client     	@56
+				supplier   	@36
 				vertices   	(list Points
-				    (2356, 2082)
-				    (2736, 2078)
-				    (2736, 1586))
-				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$33" @53
-			location   	(2496, 1401)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"692D54140033"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$34" @54
-				Parent_View 	@53
-				location   	(-240, 25)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"692D54140360"
-				client     	@53
-				supplier   	@43
-				vertices   	(list Points
-				    (2496, 1401)
-				    (2316, 1423))
-				line_style 	0)
-			    (object RoleView "$UNNAMED$35" @55
-				Parent_View 	@53
-				location   	(-240, 25)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"692D54140364"
-				client     	@53
-				supplier   	@46
-				vertices   	(list Points
-				    (2496, 1401)
-				    (2677, 1380))
+				    (431, 926)
+				    (431, 1219)
+				    (1250, 1496))
 				line_style 	0)))))))
     root_category 	(object Class_Category "Logical View"
 	quid       	"39C9260C00D5"
@@ -1437,7 +1496,7 @@
 		is_loaded  	FALSE
 		file_name  	"$FRAMEWORK_PATH\\Shared Components\\j2se_1_3_org.cat"
 		quid       	"39C92693036F")
-	    (object Mechanism @56
+	    (object Mechanism @59
 		logical_models 	(list unit_reference_list
 		    (object Object "Неавторизованный пользователь"
 			quid       	"692DA7520103"
@@ -1468,8 +1527,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"FromClientToSupplier"
-					sequence   	"9.2"
-					ordinal    	40
+					sequence   	"10.2"
+					ordinal    	41
 					quidu      	"000000000000"
 					creation   	FALSE)))
 			    (object Link
@@ -1483,7 +1542,7 @@
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
 					sequence   	"1.1"
-					ordinal    	1
+					ordinal    	2
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Отрисовать админ-панель(role)"
@@ -1492,7 +1551,7 @@
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
 					sequence   	"1.1.1.2"
-					ordinal    	5
+					ordinal    	6
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Получить массив конкурсов"
@@ -1500,8 +1559,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"2.1"
-					ordinal    	11
+					sequence   	"3.1"
+					ordinal    	12
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Отправить JSON список"
@@ -1509,8 +1568,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
-					sequence   	"2.1.2"
-					ordinal    	14
+					sequence   	"3.1.2"
+					ordinal    	15
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Получить конкурс по id"
@@ -1518,8 +1577,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"6.1"
-					ordinal    	17
+					sequence   	"7.1"
+					ordinal    	18
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "JSON с полными параметрами"
@@ -1527,8 +1586,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
-					sequence   	"6.1.2"
-					ordinal    	20
+					sequence   	"7.1.2"
+					ordinal    	21
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Вызвать функцию блокировки/восстановления пользователя"
@@ -1536,8 +1595,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"7.1"
-					ordinal    	23
+					sequence   	"8.1"
+					ordinal    	24
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Выдать доступ/закрыть доступ пользователю"
@@ -1545,8 +1604,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
-					sequence   	"7.1.2"
-					ordinal    	26
+					sequence   	"8.1.2"
+					ordinal    	27
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Передать обновлённые данные конкурса"
@@ -1554,8 +1613,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"8.1"
-					ordinal    	29
+					sequence   	"9.1"
+					ordinal    	30
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Сообщить, что изменения успешно внесены"
@@ -1563,8 +1622,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
-					sequence   	"8.1.2"
-					ordinal    	32
+					sequence   	"9.1.2"
+					ordinal    	33
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Вызвать функцию выхода из системы"
@@ -1572,8 +1631,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"9.1"
-					ordinal    	36
+					sequence   	"10.1"
+					ordinal    	37
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Выход из системы"
@@ -1581,13 +1640,13 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
-					sequence   	"9.1.2"
-					ordinal    	39
+					sequence   	"10.1.2"
+					ordinal    	40
 					quidu      	"000000000000"
 					creation   	FALSE)))
 			    (object Link
 				quid       	"692DAD9E02DE"
-				supplier   	"$UNNAMED$36"
+				supplier   	"$UNNAMED$39"
 				quidu      	"692DAD3C0205"
 				messages   	(list Messages
 				    (object Message "Направить на страницу агента"
@@ -1596,7 +1655,7 @@
 					synchronization 	"Return"
 					dir        	"FromClientToSupplier"
 					sequence   	"1.2"
-					ordinal    	6
+					ordinal    	7
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Просмотреть список конкурсов"
@@ -1604,8 +1663,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"ToClientFromSupplier"
-					sequence   	"2"
-					ordinal    	7
+					sequence   	"3"
+					ordinal    	8
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Отобразить конкурсы на странице"
@@ -1613,8 +1672,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"FromClientToSupplier"
-					sequence   	"2.2"
-					ordinal    	15
+					sequence   	"3.2"
+					ordinal    	16
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Поиск конкурсов из списка"
@@ -1622,8 +1681,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"ToClientFromSupplier"
-					sequence   	"3"
-					ordinal    	8
+					sequence   	"4"
+					ordinal    	9
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Фильтрация конкурсов в списке"
@@ -1631,8 +1690,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"ToClientFromSupplier"
-					sequence   	"4"
-					ordinal    	9
+					sequence   	"5"
+					ordinal    	10
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Обновить список конкурсов"
@@ -1640,8 +1699,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"ToClientFromSupplier"
-					sequence   	"5"
-					ordinal    	10
+					sequence   	"6"
+					ordinal    	11
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Просмотр детальной информации о конкурсе"
@@ -1649,8 +1708,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"ToClientFromSupplier"
-					sequence   	"6"
-					ordinal    	16
+					sequence   	"7"
+					ordinal    	17
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Показать детали конкурса"
@@ -1658,8 +1717,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"FromClientToSupplier"
-					sequence   	"6.2"
-					ordinal    	21
+					sequence   	"7.2"
+					ordinal    	22
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Выйти из системы"
@@ -1667,8 +1726,17 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"ToClientFromSupplier"
-					sequence   	"10"
-					ordinal    	35
+					sequence   	"11"
+					ordinal    	36
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Войти в личный кабинет"
+					quid       	"6964F5C4005D"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"ToClientFromSupplier"
+					sequence   	"2"
+					ordinal    	1
 					quidu      	"000000000000"
 					creation   	FALSE))))
 			class      	"Logical View::javax::jms::ObjectMessage"
@@ -1690,7 +1758,7 @@
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
 					sequence   	"1.1.1.1"
-					ordinal    	3
+					ordinal    	4
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Передача токена(access token)"
@@ -1699,7 +1767,7 @@
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
 					sequence   	"1.1.1.1.1"
-					ordinal    	4
+					ordinal    	5
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Получить данные из таблицы"
@@ -1707,8 +1775,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"2.1.1"
-					ordinal    	12
+					sequence   	"3.1.1"
+					ordinal    	13
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Направить массив конкурсов(request)"
@@ -1716,8 +1784,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
-					sequence   	"2.1.1.1"
-					ordinal    	13
+					sequence   	"3.1.1.1"
+					ordinal    	14
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Получить данные из таблицы"
@@ -1725,8 +1793,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"6.1.1"
-					ordinal    	18
+					sequence   	"7.1.1"
+					ordinal    	19
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Направить данные конкурса(сырая и структурированная информация)"
@@ -1734,8 +1802,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
-					sequence   	"6.1.1.1"
-					ordinal    	19
+					sequence   	"7.1.1.1"
+					ordinal    	20
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Записать изменения в таблицу(array)"
@@ -1743,8 +1811,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"7.1.1"
-					ordinal    	24
+					sequence   	"8.1.1"
+					ordinal    	25
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Передать статус пользователя(status)"
@@ -1752,8 +1820,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
-					sequence   	"7.1.1.1"
-					ordinal    	25
+					sequence   	"8.1.1.1"
+					ordinal    	26
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Записать изменения в таблицу(array)"
@@ -1761,8 +1829,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"8.1.1"
-					ordinal    	30
+					sequence   	"9.1.1"
+					ordinal    	31
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Передать успешное сохранение обновлённых данных"
@@ -1770,8 +1838,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
-					sequence   	"8.1.1.1"
-					ordinal    	31
+					sequence   	"9.1.1.1"
+					ordinal    	32
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Удалить все активные токены пользователя(user_id)"
@@ -1779,8 +1847,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"9.1.1"
-					ordinal    	37
+					sequence   	"10.1.1"
+					ordinal    	38
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Подтвердить удаление"
@@ -1788,8 +1856,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
-					sequence   	"9.1.1.1"
-					ordinal    	38
+					sequence   	"10.1.1.1"
+					ordinal    	39
 					quidu      	"000000000000"
 					creation   	FALSE)))
 			    (object Link
@@ -1803,7 +1871,7 @@
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
 					sequence   	"1.1.1"
-					ordinal    	2
+					ordinal    	3
 					quidu      	"000000000000"
 					creation   	FALSE))))
 			persistence 	"Transient"
@@ -1814,14 +1882,14 @@
 			persistence 	"Transient"
 			creationObj 	FALSE
 			multi      	FALSE)
-		    (object Object "$UNNAMED$36"
+		    (object Object "$UNNAMED$39"
 			quid       	"692DAD3C0205"
 			class      	"Use Case View::Агент"
 			quidu      	"692C52E2005A"
 			persistence 	"Transient"
 			creationObj 	TRUE
 			multi      	FALSE)
-		    (object Object "$UNNAMED$37"
+		    (object Object "$UNNAMED$40"
 			quid       	"692DAD7903CF"
 			collaborators 	(list link_list
 			    (object Link
@@ -1834,8 +1902,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"7"
-					ordinal    	22
+					sequence   	"8"
+					ordinal    	23
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Отрисовать окно управления пользователями"
@@ -1843,8 +1911,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
-					sequence   	"7.2"
-					ordinal    	27
+					sequence   	"8.2"
+					ordinal    	28
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Редактировать конкурс"
@@ -1852,8 +1920,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"8"
-					ordinal    	28
+					sequence   	"9"
+					ordinal    	29
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Отрисовка уведомления об успешном редактировании"
@@ -1861,8 +1929,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Return"
 					dir        	"ToClientFromSupplier"
-					sequence   	"8.2"
-					ordinal    	33
+					sequence   	"9.2"
+					ordinal    	34
 					quidu      	"000000000000"
 					creation   	FALSE)
 				    (object Message "Выйти из системы"
@@ -1870,8 +1938,8 @@
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"9"
-					ordinal    	34
+					sequence   	"10"
+					ordinal    	35
 					quidu      	"000000000000"
 					creation   	FALSE))))
 			class      	"Use Case View::Разработчик/Администратор"
@@ -1912,7 +1980,7 @@
 		    quid       	"6936ED0801BD")
 		(object ActivityState "Авторизация"
 		    quid       	"6936EE380300")
-		(object Decision "$UNNAMED$38"
+		(object Decision "$UNNAMED$41"
 		    quid       	"6936EE4501F6")
 		(object ActivityState "NewActivity"
 		    quid       	"6936EF860164")
@@ -1924,26 +1992,26 @@
 		    quid       	"6936F00001C5")
 		(object ActivityState "Просмотреть список конкурсов"
 		    quid       	"6936F0CA0281")
-		(object Decision "$UNNAMED$39"
+		(object Decision "$UNNAMED$42"
 		    quid       	"6936F0D90164")
-		(object Decision "$UNNAMED$40"
+		(object Decision "$UNNAMED$43"
 		    quid       	"6936F16803CA")
-		(object Decision "$UNNAMED$41"
+		(object Decision "$UNNAMED$44"
 		    quid       	"6936F1700357")
 		(object ActivityState "Выход из системы"
 		    quid       	"6936F1890347")
-		(object Decision "$UNNAMED$42"
+		(object Decision "$UNNAMED$45"
 		    quid       	"6936F1E200E5")
 		(object State "NewState"
 		    quid       	"6936F1EC011E"
 		    type       	"Normal")
 		(object ActivityState "Редактировать информации о конкурсе"
 		    quid       	"6936F1F10392")
-		(object Decision "$UNNAMED$43"
+		(object Decision "$UNNAMED$46"
 		    quid       	"6936F2600198")
 		(object ActivityState "Ввод текста в поле"
 		    quid       	"6936F3C102F7")
-		(object Decision "$UNNAMED$44"
+		(object Decision "$UNNAMED$47"
 		    quid       	"6936F5770368"))
 	    partitions 	(list Partitions)
 	    objects    	(list Objects)
@@ -2035,7 +2103,7 @@
 			quid       	"6936EEB103BD"))
 		(object State_Transition
 		    quid       	"6936EEB5004C"
-		    supplier   	"$UNNAMED$38"
+		    supplier   	"$UNNAMED$41"
 		    supplier_quidu 	"6936EE4501F6"
 		    client     	"Logical View::State/Activity Model::Авторизация"
 		    client_quidu 	"6936EE380300"
@@ -2046,7 +2114,7 @@
 		    label      	""
 		    supplier   	"Logical View::State/Activity Model::Авторизация"
 		    supplier_quidu 	"6936EE380300"
-		    client     	"$UNNAMED$38"
+		    client     	"$UNNAMED$41"
 		    client_quidu 	"6936EE4501F6"
 		    Event      	(object Event "Данные неверны"
 			quid       	"6936EEBC03DD")
@@ -2056,7 +2124,7 @@
 		    quid       	"6936F07302AE"
 		    supplier   	"Logical View::State/Activity Model::Обновить список конкурсов"
 		    supplier_quidu 	"6936EFEF0229"
-		    client     	"$UNNAMED$38"
+		    client     	"$UNNAMED$41"
 		    client_quidu 	"6936EE4501F6"
 		    sendEvent  	(object sendEvent
 			quid       	"6936F07302B1"))
@@ -2064,7 +2132,7 @@
 		    quid       	"6936F090005E"
 		    supplier   	"Logical View::State/Activity Model::Просмотреть детальной информации о конкурсе"
 		    supplier_quidu 	"6936EFFE0029"
-		    client     	"$UNNAMED$38"
+		    client     	"$UNNAMED$41"
 		    client_quidu 	"6936EE4501F6"
 		    sendEvent  	(object sendEvent
 			quid       	"6936F0900061"))
@@ -2072,7 +2140,7 @@
 		    quid       	"6936F09700AC"
 		    supplier   	"Logical View::State/Activity Model::Выбрать нужные фильтры"
 		    supplier_quidu 	"6936F00001C5"
-		    client     	"$UNNAMED$38"
+		    client     	"$UNNAMED$41"
 		    client_quidu 	"6936EE4501F6"
 		    sendEvent  	(object sendEvent
 			quid       	"6936F09700AF"))
@@ -2081,7 +2149,7 @@
 		    label      	""
 		    supplier   	"Logical View::State/Activity Model::Просмотреть список конкурсов"
 		    supplier_quidu 	"6936F0CA0281"
-		    client     	"$UNNAMED$38"
+		    client     	"$UNNAMED$41"
 		    client_quidu 	"6936EE4501F6"
 		    Event      	(object Event "Успешная авторизация"
 			quid       	"6936F0E2004E")
@@ -2089,7 +2157,7 @@
 			quid       	"6936F0E20050"))
 		(object State_Transition
 		    quid       	"6936F0E80018"
-		    supplier   	"$UNNAMED$39"
+		    supplier   	"$UNNAMED$42"
 		    supplier_quidu 	"6936F0D90164"
 		    client     	"Logical View::State/Activity Model::Просмотреть список конкурсов"
 		    client_quidu 	"6936F0CA0281"
@@ -2100,7 +2168,7 @@
 		    label      	""
 		    supplier   	"Logical View::State/Activity Model::Выбрать нужные фильтры"
 		    supplier_quidu 	"6936F00001C5"
-		    client     	"$UNNAMED$39"
+		    client     	"$UNNAMED$42"
 		    client_quidu 	"6936F0D90164"
 		    Event      	(object Event "Использование фильтров для списка"
 			quid       	"6936F0EC019F")
@@ -2111,7 +2179,7 @@
 		    label      	""
 		    supplier   	"Logical View::State/Activity Model::Обновить список конкурсов"
 		    supplier_quidu 	"6936EFEF0229"
-		    client     	"$UNNAMED$39"
+		    client     	"$UNNAMED$42"
 		    client_quidu 	"6936F0D90164"
 		    Event      	(object Event "Нажатие на кнопку обновления списка"
 			quid       	"6936F0F101F1")
@@ -2122,7 +2190,7 @@
 		    label      	""
 		    supplier   	"Logical View::State/Activity Model::Просмотреть детальной информации о конкурсе"
 		    supplier_quidu 	"6936EFFE0029"
-		    client     	"$UNNAMED$39"
+		    client     	"$UNNAMED$42"
 		    client_quidu 	"6936F0D90164"
 		    Event      	(object Event "Двойной нажатие на конкурс в списке"
 			quid       	"6936F0F90221")
@@ -2130,7 +2198,7 @@
 			quid       	"6936F0F90223"))
 		(object State_Transition
 		    quid       	"6936F17502F6"
-		    supplier   	"$UNNAMED$40"
+		    supplier   	"$UNNAMED$43"
 		    supplier_quidu 	"6936F16803CA"
 		    client     	"Logical View::State/Activity Model::Выбрать нужные фильтры"
 		    client_quidu 	"6936F00001C5"
@@ -2141,7 +2209,7 @@
 		    label      	""
 		    supplier   	"Logical View::State/Activity Model::Просмотреть детальной информации о конкурсе"
 		    supplier_quidu 	"6936EFFE0029"
-		    client     	"$UNNAMED$40"
+		    client     	"$UNNAMED$43"
 		    client_quidu 	"6936F16803CA"
 		    Event      	(object Event "Двойной нажатие на конкурс в списке"
 			quid       	"6936F1790276")
@@ -2149,7 +2217,7 @@
 			quid       	"6936F1790278"))
 		(object State_Transition
 		    quid       	"6936F17F0381"
-		    supplier   	"$UNNAMED$41"
+		    supplier   	"$UNNAMED$44"
 		    supplier_quidu 	"6936F1700357"
 		    client     	"Logical View::State/Activity Model::Обновить список конкурсов"
 		    client_quidu 	"6936EFEF0229"
@@ -2160,7 +2228,7 @@
 		    label      	""
 		    supplier   	"Logical View::State/Activity Model::Просмотреть детальной информации о конкурсе"
 		    supplier_quidu 	"6936EFFE0029"
-		    client     	"$UNNAMED$41"
+		    client     	"$UNNAMED$44"
 		    client_quidu 	"6936F1700357"
 		    Event      	(object Event "Двойной нажатие на конкурс в списке"
 			quid       	"6936F18203BB")
@@ -2168,7 +2236,7 @@
 			quid       	"6936F18203BD"))
 		(object State_Transition
 		    quid       	"6936F2100149"
-		    supplier   	"$UNNAMED$42"
+		    supplier   	"$UNNAMED$45"
 		    supplier_quidu 	"6936F1E200E5"
 		    client     	"Logical View::State/Activity Model::Просмотреть детальной информации о конкурсе"
 		    client_quidu 	"6936EFFE0029"
@@ -2179,7 +2247,7 @@
 		    label      	""
 		    supplier   	"Logical View::State/Activity Model::Редактировать информации о конкурсе"
 		    supplier_quidu 	"6936F1F10392"
-		    client     	"$UNNAMED$42"
+		    client     	"$UNNAMED$45"
 		    client_quidu 	"6936F1E200E5"
 		    Event      	(object Event "Был выбран пункт редактирования конкурса"
 			quid       	"6936F213001D")
@@ -2188,9 +2256,9 @@
 		(object State_Transition
 		    quid       	"6936F2660082"
 		    label      	""
-		    supplier   	"$UNNAMED$43"
+		    supplier   	"$UNNAMED$46"
 		    supplier_quidu 	"6936F2600198"
-		    client     	"$UNNAMED$42"
+		    client     	"$UNNAMED$45"
 		    client_quidu 	"6936F1E200E5"
 		    Event      	(object Event "Пункт не  был выбран"
 			quid       	"6936F2660083")
@@ -2200,7 +2268,7 @@
 		    quid       	"6936F2690005"
 		    supplier   	"Logical View::State/Activity Model::Выход из системы"
 		    supplier_quidu 	"6936F1890347"
-		    client     	"$UNNAMED$43"
+		    client     	"$UNNAMED$46"
 		    client_quidu 	"6936F2600198"
 		    sendEvent  	(object sendEvent
 			quid       	"6936F2690008"))
@@ -2216,13 +2284,13 @@
 		    quid       	"6936F2750331"
 		    supplier   	"Logical View::State/Activity Model::Просмотреть список конкурсов"
 		    supplier_quidu 	"6936F0CA0281"
-		    client     	"$UNNAMED$43"
+		    client     	"$UNNAMED$46"
 		    client_quidu 	"6936F2600198"
 		    sendEvent  	(object sendEvent
 			quid       	"6936F2750334"))
 		(object State_Transition
 		    quid       	"6936F2A0032E"
-		    supplier   	"$UNNAMED$43"
+		    supplier   	"$UNNAMED$46"
 		    supplier_quidu 	"6936F2600198"
 		    client     	"Logical View::State/Activity Model::Редактировать информации о конкурсе"
 		    client_quidu 	"6936F1F10392"
@@ -2230,17 +2298,17 @@
 			quid       	"6936F2A00331"))
 		(object State_Transition
 		    quid       	"6936F2B600E0"
-		    supplier   	"$UNNAMED$43"
+		    supplier   	"$UNNAMED$46"
 		    supplier_quidu 	"6936F2600198"
-		    client     	"$UNNAMED$40"
+		    client     	"$UNNAMED$43"
 		    client_quidu 	"6936F16803CA"
 		    sendEvent  	(object sendEvent
 			quid       	"6936F2B600E3"))
 		(object State_Transition
 		    quid       	"6936F2C5003D"
-		    supplier   	"$UNNAMED$43"
+		    supplier   	"$UNNAMED$46"
 		    supplier_quidu 	"6936F2600198"
-		    client     	"$UNNAMED$41"
+		    client     	"$UNNAMED$44"
 		    client_quidu 	"6936F1700357"
 		    sendEvent  	(object sendEvent
 			quid       	"6936F2C50040"))
@@ -2257,7 +2325,7 @@
 		    label      	""
 		    supplier   	"Logical View::State/Activity Model::Ввод текста в поле"
 		    supplier_quidu 	"6936F3C102F7"
-		    client     	"$UNNAMED$39"
+		    client     	"$UNNAMED$42"
 		    client_quidu 	"6936F0D90164"
 		    Event      	(object Event "Поиск по конкурсу"
 			quid       	"6936F3CC018E")
@@ -2265,7 +2333,7 @@
 			quid       	"6936F3CC0190"))
 		(object State_Transition
 		    quid       	"6936F3D0012E"
-		    supplier   	"$UNNAMED$40"
+		    supplier   	"$UNNAMED$43"
 		    supplier_quidu 	"6936F16803CA"
 		    client     	"Logical View::State/Activity Model::Ввод текста в поле"
 		    client_quidu 	"6936F3C102F7"
@@ -2273,7 +2341,7 @@
 			quid       	"6936F3D00131"))
 		(object State_Transition
 		    quid       	"6936F57B02A9"
-		    supplier   	"$UNNAMED$44"
+		    supplier   	"$UNNAMED$47"
 		    supplier_quidu 	"6936F5770368"
 		    client     	"Logical View::State/Activity Model::Редактировать информации о конкурсе"
 		    client_quidu 	"6936F1F10392"
@@ -2284,7 +2352,7 @@
 		    label      	""
 		    supplier   	"Logical View::State/Activity Model::Редактировать информации о конкурсе"
 		    supplier_quidu 	"6936F1F10392"
-		    client     	"$UNNAMED$44"
+		    client     	"$UNNAMED$47"
 		    client_quidu 	"6936F5770368"
 		    Event      	(object Event "Отредактированные данные некорректны"
 			quid       	"6936F5830368")
@@ -2293,9 +2361,9 @@
 		(object State_Transition
 		    quid       	"6936F58E0203"
 		    label      	""
-		    supplier   	"$UNNAMED$43"
+		    supplier   	"$UNNAMED$46"
 		    supplier_quidu 	"6936F2600198"
-		    client     	"$UNNAMED$44"
+		    client     	"$UNNAMED$47"
 		    client_quidu 	"6936F5770368"
 		    Event      	(object Event "Данные обновлены"
 			quid       	"6936F58E0204")
@@ -2312,7 +2380,7 @@
 		    origin_x   	0
 		    origin_y   	0
 		    items      	(list diagram_item_list
-			(object StateView "StartState" "Конкурс найден" @57
+			(object StateView "StartState" "Конкурс найден" @60
 			    location   	(320, 432)
 			    font       	(object Font
 				size       	10
@@ -2324,8 +2392,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @58
-				Parent_View 	@57
+			    label      	(object SegLabel @61
+				Parent_View 	@60
 				location   	(153, 306)
 				font       	(object Font
 				    size       	10
@@ -2348,7 +2416,7 @@
 			    line_color 	3342489
 			    quidu      	"692DC05500C5"
 			    autoResize 	TRUE)
-			(object StateView "Normal" "Проанализирован парсером с нейросетью" @59
+			(object StateView "Normal" "Проанализирован парсером с нейросетью" @62
 			    location   	(1488, 432)
 			    font       	(object Font
 				size       	10
@@ -2361,7 +2429,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@59
+				Parent_View 	@62
 				location   	(1488, 407)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -2376,7 +2444,7 @@
 			    width      	556
 			    height     	162
 			    autoResize 	TRUE)
-			(object TransView "" @60
+			(object TransView "" @63
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -2387,8 +2455,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @61
-				Parent_View 	@60
+			    label      	(object SegLabel @64
+				Parent_View 	@63
 				location   	(780, 388)
 				font       	(object Font
 				    size       	10
@@ -2411,14 +2479,14 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"692DC31F0140"
-			    client     	@57
-			    supplier   	@59
+			    client     	@60
+			    supplier   	@62
 			    vertices   	(list Points
 				(350, 432)
 				(1210, 432))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object StateView "Normal" "Записан в БД" @62
+			(object StateView "Normal" "Записан в БД" @65
 			    location   	(1488, 1008)
 			    font       	(object Font
 				size       	10
@@ -2431,7 +2499,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@62
+				Parent_View 	@65
 				location   	(1488, 997)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -2445,7 +2513,7 @@
 			    quidu      	"692DC3380070"
 			    height     	134
 			    autoResize 	TRUE)
-			(object TransView "" @63
+			(object TransView "" @66
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -2456,8 +2524,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @64
-				Parent_View 	@63
+			    label      	(object SegLabel @67
+				Parent_View 	@66
 				location   	(1916, 758)
 				font       	(object Font
 				    size       	10
@@ -2480,14 +2548,14 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"692DC3A50143"
-			    client     	@59
-			    supplier   	@62
+			    client     	@62
+			    supplier   	@65
 			    vertices   	(list Points
 				(1488, 513)
 				(1488, 941))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object StateView "Normal" "Опубликован на сайте(виден пользователю)" @65
+			(object StateView "Normal" "Опубликован на сайте(виден пользователю)" @68
 			    location   	(1488, 1536)
 			    font       	(object Font
 				size       	10
@@ -2500,7 +2568,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@65
+				Parent_View 	@68
 				location   	(1488, 1525)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -2515,7 +2583,7 @@
 			    width      	628
 			    height     	134
 			    autoResize 	TRUE)
-			(object TransView "" @66
+			(object TransView "" @69
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -2526,8 +2594,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @67
-				Parent_View 	@66
+			    label      	(object SegLabel @70
+				Parent_View 	@69
 				location   	(1915, 1289)
 				font       	(object Font
 				    size       	10
@@ -2550,14 +2618,14 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"692DC3CE0102"
-			    client     	@62
-			    supplier   	@65
+			    client     	@65
+			    supplier   	@68
 			    vertices   	(list Points
 				(1488, 1075)
 				(1488, 1469))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object StateView "Normal" "Обновлён" @68
+			(object StateView "Normal" "Обновлён" @71
 			    location   	(400, 2048)
 			    font       	(object Font
 				size       	10
@@ -2570,7 +2638,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@68
+				Parent_View 	@71
 				location   	(400, 2037)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -2584,7 +2652,7 @@
 			    quidu      	"692DC497005E"
 			    height     	134
 			    autoResize 	TRUE)
-			(object StateView "Normal" "Устарел" @69
+			(object StateView "Normal" "Устарел" @72
 			    location   	(2848, 2064)
 			    font       	(object Font
 				size       	10
@@ -2597,7 +2665,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@69
+				Parent_View 	@72
 				location   	(2848, 2053)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -2611,7 +2679,7 @@
 			    quidu      	"692DC4CA015A"
 			    height     	134
 			    autoResize 	TRUE)
-			(object StateView "EndState" "Конкурс удалён" @70
+			(object StateView "EndState" "Конкурс удалён" @73
 			    location   	(1424, 2560)
 			    font       	(object Font
 				size       	10
@@ -2623,8 +2691,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @71
-				Parent_View 	@70
+			    label      	(object SegLabel @74
+				Parent_View 	@73
 				location   	(1493, 2534)
 				font       	(object Font
 				    size       	10
@@ -2647,7 +2715,7 @@
 			    line_color 	3342489
 			    quidu      	"692DC4F80027"
 			    autoResize 	TRUE)
-			(object TransView "" @72
+			(object TransView "" @75
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -2658,8 +2726,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @73
-				Parent_View 	@72
+			    label      	(object SegLabel @76
+				Parent_View 	@75
 				location   	(665, 1718)
 				font       	(object Font
 				    size       	10
@@ -2682,14 +2750,14 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"692DC52F0279"
-			    client     	@65
-			    supplier   	@68
+			    client     	@68
+			    supplier   	@71
 			    vertices   	(list Points
 				(1345, 1602)
 				(550, 1977))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @74
+			(object TransView "" @77
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -2700,8 +2768,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @75
-				Parent_View 	@74
+			    label      	(object SegLabel @78
+				Parent_View 	@77
 				location   	(2353, 1747)
 				font       	(object Font
 				    size       	10
@@ -2724,14 +2792,14 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"692DC53102B2"
-			    client     	@65
-			    supplier   	@69
+			    client     	@68
+			    supplier   	@72
 			    vertices   	(list Points
 				(1660, 1602)
 				(2698, 2005))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @76
+			(object TransView "" @79
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -2742,8 +2810,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @77
-				Parent_View 	@76
+			    label      	(object SegLabel @80
+				Parent_View 	@79
 				location   	(1624, 2011)
 				font       	(object Font
 				    size       	10
@@ -2766,14 +2834,14 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"692DC53303E3"
-			    client     	@68
-			    supplier   	@69
+			    client     	@71
+			    supplier   	@72
 			    vertices   	(list Points
 				(550, 2048)
 				(2698, 2063))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @78
+			(object TransView "" @81
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -2784,8 +2852,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @79
-				Parent_View 	@78
+			    label      	(object SegLabel @82
+				Parent_View 	@81
 				location   	(2479, 2407)
 				font       	(object Font
 				    size       	10
@@ -2808,8 +2876,8 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"692DC536009D"
-			    client     	@69
-			    supplier   	@70
+			    client     	@72
+			    supplier   	@73
 			    vertices   	(list Points
 				(2698, 2116)
 				(1466, 2545))
@@ -2824,25 +2892,25 @@
 		    origin_x   	0
 		    origin_y   	106
 		    items      	(list diagram_item_list
-			(object Swimlane "" @80
+			(object Swimlane "" @83
 			    line_color 	3342489
 			    width      	450)
-			(object StateView "StartState" "Конкурс найден" @81
-			    Parent_View 	@80
+			(object StateView "StartState" "Конкурс найден" @84
+			    Parent_View 	@83
 			    location   	(2736, 176)
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    quidu      	"692DC05500C5"
 			    autoResize 	TRUE)
-			(object StateView "EndState" "Конкурс удалён" @82
-			    Parent_View 	@80
+			(object StateView "EndState" "Конкурс удалён" @85
+			    Parent_View 	@83
 			    location   	(2736, 3072)
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    quidu      	"692DC4F80027"
 			    autoResize 	TRUE)
-			(object ActivityStateView "Открыть сайт" @83
-			    Parent_View 	@80
+			(object ActivityStateView "Открыть сайт" @86
+			    Parent_View 	@83
 			    location   	(2736, 432)
 			    font       	(object Font
 				size       	10
@@ -2855,7 +2923,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@83
+				Parent_View 	@86
 				location   	(2736, 435)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -2870,19 +2938,19 @@
 			    height     	106
 			    annotation 	1
 			    autoResize 	TRUE)
-			(object TransView "" @84
+			(object TransView "" @87
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F2DA009B"
-			    client     	@81
-			    supplier   	@83
+			    client     	@84
+			    supplier   	@86
 			    vertices   	(list Points
 				(2736, 206)
 				(2736, 379))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object ActivityStateView "Авторизация" @85
-			    Parent_View 	@80
+			(object ActivityStateView "Авторизация" @88
+			    Parent_View 	@83
 			    location   	(2736, 704)
 			    font       	(object Font
 				size       	10
@@ -2895,7 +2963,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@85
+				Parent_View 	@88
 				location   	(2736, 707)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -2910,37 +2978,37 @@
 			    height     	106
 			    annotation 	1
 			    autoResize 	TRUE)
-			(object TransView "" @86
+			(object TransView "" @89
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936EEB103BA"
-			    client     	@83
-			    supplier   	@85
+			    client     	@86
+			    supplier   	@88
 			    vertices   	(list Points
 				(2736, 485)
 				(2736, 651))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object DecisionView "$UNNAMED$38" @87
-			    Parent_View 	@80
+			(object DecisionView "$UNNAMED$41" @90
+			    Parent_View 	@83
 			    location   	(2736, 976)
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"6936EE4501F6"
 			    autoResize 	TRUE)
-			(object TransView "" @88
+			(object TransView "" @91
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936EEB5004C"
-			    client     	@85
-			    supplier   	@87
+			    client     	@88
+			    supplier   	@90
 			    vertices   	(list Points
 				(2736, 757)
 				(2736, 939))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @89
+			(object TransView "" @92
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -2951,8 +3019,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @90
-				Parent_View 	@89
+			    label      	(object SegLabel @93
+				Parent_View 	@92
 				location   	(2294, 901)
 				font       	(object Font
 				    size       	10
@@ -2975,8 +3043,8 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936EEBC03DC"
-			    client     	@87
-			    supplier   	@85
+			    client     	@90
+			    supplier   	@88
 			    vertices   	(list Points
 				(2661, 976)
 				(2016, 971)
@@ -2984,8 +3052,8 @@
 				(2564, 703))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object ActivityStateView "Обновить список конкурсов" @91
-			    Parent_View 	@80
+			(object ActivityStateView "Обновить список конкурсов" @94
+			    Parent_View 	@83
 			    location   	(3568, 1568)
 			    font       	(object Font
 				size       	10
@@ -2998,7 +3066,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@91
+				Parent_View 	@94
 				location   	(3568, 1571)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -3014,8 +3082,8 @@
 			    height     	106
 			    annotation 	1
 			    autoResize 	TRUE)
-			(object ActivityStateView "Просмотреть детальной информации о конкурсе" @92
-			    Parent_View 	@80
+			(object ActivityStateView "Просмотреть детальной информации о конкурсе" @95
+			    Parent_View 	@83
 			    location   	(2736, 2112)
 			    font       	(object Font
 				size       	10
@@ -3028,7 +3096,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@92
+				Parent_View 	@95
 				location   	(2736, 2115)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -3044,8 +3112,8 @@
 			    height     	106
 			    annotation 	1
 			    autoResize 	TRUE)
-			(object ActivityStateView "Выбрать нужные фильтры" @93
-			    Parent_View 	@80
+			(object ActivityStateView "Выбрать нужные фильтры" @96
+			    Parent_View 	@83
 			    location   	(1936, 1552)
 			    font       	(object Font
 				size       	10
@@ -3058,7 +3126,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@93
+				Parent_View 	@96
 				location   	(1936, 1555)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -3074,8 +3142,8 @@
 			    height     	106
 			    annotation 	1
 			    autoResize 	TRUE)
-			(object ActivityStateView "Просмотреть список конкурсов" @94
-			    Parent_View 	@80
+			(object ActivityStateView "Просмотреть список конкурсов" @97
+			    Parent_View 	@83
 			    location   	(2736, 1248)
 			    font       	(object Font
 				size       	10
@@ -3088,7 +3156,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@94
+				Parent_View 	@97
 				location   	(2736, 1251)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -3104,7 +3172,7 @@
 			    height     	106
 			    annotation 	1
 			    autoResize 	TRUE)
-			(object TransView "" @95
+			(object TransView "" @98
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3115,8 +3183,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @96
-				Parent_View 	@95
+			    label      	(object SegLabel @99
+				Parent_View 	@98
 				location   	(2971, 1104)
 				font       	(object Font
 				    size       	10
@@ -3139,33 +3207,33 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F0E2004D"
-			    client     	@87
-			    supplier   	@94
+			    client     	@90
+			    supplier   	@97
 			    vertices   	(list Points
 				(2736, 1013)
 				(2736, 1195))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object DecisionView "$UNNAMED$39" @97
-			    Parent_View 	@80
+			(object DecisionView "$UNNAMED$42" @100
+			    Parent_View 	@83
 			    location   	(2736, 1488)
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"6936F0D90164"
 			    autoResize 	TRUE)
-			(object TransView "" @98
+			(object TransView "" @101
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F0E80018"
-			    client     	@94
-			    supplier   	@97
+			    client     	@97
+			    supplier   	@100
 			    vertices   	(list Points
 				(2736, 1301)
 				(2736, 1451))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @99
+			(object TransView "" @102
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3176,8 +3244,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @100
-				Parent_View 	@99
+			    label      	(object SegLabel @103
+				Parent_View 	@102
 				location   	(2281, 1421)
 				font       	(object Font
 				    size       	10
@@ -3200,14 +3268,14 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F0EC019E"
-			    client     	@97
-			    supplier   	@93
+			    client     	@100
+			    supplier   	@96
 			    vertices   	(list Points
 				(2661, 1488)
 				(2154, 1532))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @101
+			(object TransView "" @104
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3218,8 +3286,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @102
-				Parent_View 	@101
+			    label      	(object SegLabel @105
+				Parent_View 	@104
 				location   	(3300, 1423)
 				font       	(object Font
 				    size       	10
@@ -3242,14 +3310,14 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F0F101F0"
-			    client     	@97
-			    supplier   	@91
+			    client     	@100
+			    supplier   	@94
 			    vertices   	(list Points
 				(2811, 1488)
 				(3373, 1547))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @103
+			(object TransView "" @106
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3260,8 +3328,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @104
-				Parent_View 	@103
+			    label      	(object SegLabel @107
+				Parent_View 	@106
 				location   	(3116, 1858)
 				font       	(object Font
 				    size       	10
@@ -3284,33 +3352,33 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F0F90220"
-			    client     	@97
-			    supplier   	@92
+			    client     	@100
+			    supplier   	@95
 			    vertices   	(list Points
 				(2736, 1525)
 				(2736, 2059))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object DecisionView "$UNNAMED$40" @105
-			    Parent_View 	@80
+			(object DecisionView "$UNNAMED$43" @108
+			    Parent_View 	@83
 			    location   	(1936, 2128)
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"6936F16803CA"
 			    autoResize 	TRUE)
-			(object TransView "" @106
+			(object TransView "" @109
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F17502F6"
-			    client     	@93
-			    supplier   	@105
+			    client     	@96
+			    supplier   	@108
 			    vertices   	(list Points
 				(1936, 1605)
 				(1936, 2091))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @107
+			(object TransView "" @110
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3321,8 +3389,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @108
-				Parent_View 	@107
+			    label      	(object SegLabel @111
+				Parent_View 	@110
 				location   	(2310, 2048)
 				font       	(object Font
 				    size       	10
@@ -3345,33 +3413,33 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F1790275"
-			    client     	@105
-			    supplier   	@92
+			    client     	@108
+			    supplier   	@95
 			    vertices   	(list Points
 				(2011, 2128)
 				(2480, 2117))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object DecisionView "$UNNAMED$41" @109
-			    Parent_View 	@80
+			(object DecisionView "$UNNAMED$44" @112
+			    Parent_View 	@83
 			    location   	(3568, 2112)
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"6936F1700357"
 			    autoResize 	TRUE)
-			(object TransView "" @110
+			(object TransView "" @113
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F17F0381"
-			    client     	@91
-			    supplier   	@109
+			    client     	@94
+			    supplier   	@112
 			    vertices   	(list Points
 				(3568, 1621)
 				(3568, 2075))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @111
+			(object TransView "" @114
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3382,8 +3450,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @112
-				Parent_View 	@111
+			    label      	(object SegLabel @115
+				Parent_View 	@114
 				location   	(3210, 2014)
 				font       	(object Font
 				    size       	10
@@ -3406,15 +3474,15 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F18203BA"
-			    client     	@109
-			    supplier   	@92
+			    client     	@112
+			    supplier   	@95
 			    vertices   	(list Points
 				(3493, 2112)
 				(2991, 2112))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object ActivityStateView "Выход из системы" @113
-			    Parent_View 	@80
+			(object ActivityStateView "Выход из системы" @116
+			    Parent_View 	@83
 			    location   	(2736, 2832)
 			    font       	(object Font
 				size       	10
@@ -3427,7 +3495,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@113
+				Parent_View 	@116
 				location   	(2736, 2835)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -3442,26 +3510,26 @@
 			    height     	106
 			    annotation 	1
 			    autoResize 	TRUE)
-			(object TransView "" @114
+			(object TransView "" @117
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F26B0375"
-			    client     	@113
-			    supplier   	@82
+			    client     	@116
+			    supplier   	@85
 			    vertices   	(list Points
 				(2736, 2885)
 				(2736, 3030))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object DecisionView "$UNNAMED$42" @115
-			    Parent_View 	@80
+			(object DecisionView "$UNNAMED$45" @118
+			    Parent_View 	@83
 			    location   	(2736, 2432)
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"6936F1E200E5"
 			    autoResize 	TRUE)
-			(object TransView "" @116
+			(object TransView "" @119
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3472,8 +3540,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @117
-				Parent_View 	@116
+			    label      	(object SegLabel @120
+				Parent_View 	@119
 				location   	(2750, 2280)
 				font       	(object Font
 				    size       	10
@@ -3497,15 +3565,15 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F2100149"
-			    client     	@92
-			    supplier   	@115
+			    client     	@95
+			    supplier   	@118
 			    vertices   	(list Points
 				(2736, 2165)
 				(2736, 2395))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object ActivityStateView "Редактировать информации о конкурсе" @118
-			    Parent_View 	@80
+			(object ActivityStateView "Редактировать информации о конкурсе" @121
+			    Parent_View 	@83
 			    location   	(3520, 2432)
 			    font       	(object Font
 				size       	10
@@ -3518,7 +3586,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@118
+				Parent_View 	@121
 				location   	(3520, 2435)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -3534,7 +3602,7 @@
 			    height     	106
 			    annotation 	1
 			    autoResize 	TRUE)
-			(object TransView "" @119
+			(object TransView "" @122
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3545,8 +3613,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @120
-				Parent_View 	@119
+			    label      	(object SegLabel @123
+				Parent_View 	@122
 				location   	(2998, 2358)
 				font       	(object Font
 				    size       	10
@@ -3569,22 +3637,22 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F213001C"
-			    client     	@115
-			    supplier   	@118
+			    client     	@118
+			    supplier   	@121
 			    vertices   	(list Points
 				(2811, 2432)
 				(3280, 2432))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object DecisionView "$UNNAMED$43" @121
-			    Parent_View 	@80
+			(object DecisionView "$UNNAMED$46" @124
+			    Parent_View 	@83
 			    location   	(2736, 2672)
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"6936F2600198"
 			    autoResize 	TRUE)
-			(object TransView "" @122
+			(object TransView "" @125
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3595,8 +3663,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @123
-				Parent_View 	@122
+			    label      	(object SegLabel @126
+				Parent_View 	@125
 				location   	(2781, 2536)
 				font       	(object Font
 				    size       	10
@@ -3619,30 +3687,30 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F2660082"
-			    client     	@115
-			    supplier   	@121
+			    client     	@118
+			    supplier   	@124
 			    vertices   	(list Points
 				(2736, 2469)
 				(2736, 2635))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @124
+			(object TransView "" @127
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F2690005"
-			    client     	@121
-			    supplier   	@113
+			    client     	@124
+			    supplier   	@116
 			    vertices   	(list Points
 				(2736, 2709)
 				(2736, 2779))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @125
+			(object TransView "" @128
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F2750331"
-			    client     	@121
-			    supplier   	@94
+			    client     	@124
+			    supplier   	@97
 			    vertices   	(list Points
 				(2661, 2672)
 				(1050, 2659)
@@ -3650,30 +3718,30 @@
 				(2535, 1245))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @126
+			(object TransView "" @129
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F2B600E0"
-			    client     	@105
-			    supplier   	@121
+			    client     	@108
+			    supplier   	@124
 			    vertices   	(list Points
 				(2011, 2128)
 				(2661, 2672))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @127
+			(object TransView "" @130
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F2C5003D"
-			    client     	@109
-			    supplier   	@121
+			    client     	@112
+			    supplier   	@124
 			    vertices   	(list Points
 				(3493, 2112)
 				(2811, 2672))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object ActivityStateView "Ввод текста в поле" @128
-			    Parent_View 	@80
+			(object ActivityStateView "Ввод текста в поле" @131
+			    Parent_View 	@83
 			    location   	(2416, 1792)
 			    font       	(object Font
 				size       	10
@@ -3686,7 +3754,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@128
+				Parent_View 	@131
 				location   	(2416, 1795)
 				fill_color 	13434879
 				anchor_loc 	1
@@ -3701,7 +3769,7 @@
 			    height     	106
 			    annotation 	1
 			    autoResize 	TRUE)
-			(object TransView "" @129
+			(object TransView "" @132
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3712,8 +3780,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @130
-				Parent_View 	@129
+			    label      	(object SegLabel @133
+				Parent_View 	@132
 				location   	(2276, 1676)
 				font       	(object Font
 				    size       	10
@@ -3736,44 +3804,44 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F3CC018D"
-			    client     	@97
-			    supplier   	@128
+			    client     	@100
+			    supplier   	@131
 			    vertices   	(list Points
 				(2661, 1488)
 				(2458, 1739))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @131
+			(object TransView "" @134
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F3D0012E"
-			    client     	@128
-			    supplier   	@105
+			    client     	@131
+			    supplier   	@108
 			    vertices   	(list Points
 				(2340, 1844)
 				(2011, 2128))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object DecisionView "$UNNAMED$44" @132
-			    Parent_View 	@80
+			(object DecisionView "$UNNAMED$47" @135
+			    Parent_View 	@83
 			    location   	(3520, 2672)
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"6936F5770368"
 			    autoResize 	TRUE)
-			(object TransView "" @133
+			(object TransView "" @136
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F57B02A9"
-			    client     	@118
-			    supplier   	@132
+			    client     	@121
+			    supplier   	@135
 			    vertices   	(list Points
 				(3520, 2485)
 				(3520, 2635))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @134
+			(object TransView "" @137
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3784,8 +3852,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @135
-				Parent_View 	@134
+			    label      	(object SegLabel @138
+				Parent_View 	@137
 				location   	(3912, 2780)
 				font       	(object Font
 				    size       	10
@@ -3808,8 +3876,8 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F5830367"
-			    client     	@132
-			    supplier   	@118
+			    client     	@135
+			    supplier   	@121
 			    vertices   	(list Points
 				(3595, 2672)
 				(4031, 2666)
@@ -3817,7 +3885,7 @@
 				(3760, 2428))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object TransView "" @136
+			(object TransView "" @139
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3828,8 +3896,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @137
-				Parent_View 	@136
+			    label      	(object SegLabel @140
+				Parent_View 	@139
 				location   	(3128, 2717)
 				font       	(object Font
 				    size       	10
@@ -3852,8 +3920,8 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6936F58E0203"
-			    client     	@132
-			    supplier   	@121
+			    client     	@135
+			    supplier   	@124
 			    vertices   	(list Points
 				(3445, 2672)
 				(2811, 2672))
@@ -3869,7 +3937,7 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object CategoryView "Logical View::java" @138
+		    (object CategoryView "Logical View::java" @141
 			location   	(208, 272)
 			font       	(object Font
 			    size       	10
@@ -3882,7 +3950,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@138
+			    Parent_View 	@141
 			    location   	(64, 188)
 			    nlines     	2
 			    max_width  	288
@@ -3894,7 +3962,7 @@
 			quidu      	"39C92661003B"
 			width      	300
 			height     	180)
-		    (object CategoryView "Logical View::javax" @139
+		    (object CategoryView "Logical View::javax" @142
 			location   	(656, 272)
 			font       	(object Font
 			    size       	10
@@ -3907,7 +3975,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@139
+			    Parent_View 	@142
 			    location   	(512, 188)
 			    nlines     	2
 			    max_width  	288
@@ -3919,7 +3987,7 @@
 			quidu      	"39C926610018"
 			width      	300
 			height     	180)
-		    (object CategoryView "Logical View::org" @140
+		    (object CategoryView "Logical View::org" @143
 			location   	(1104, 272)
 			font       	(object Font
 			    size       	10
@@ -3932,7 +4000,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@140
+			    Parent_View 	@143
 			    location   	(960, 188)
 			    nlines     	2
 			    max_width  	288
@@ -3953,7 +4021,7 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object NoteView @141
+		    (object NoteView @144
 			location   	(224, 624)
 			font       	(object Font
 			    size       	10
@@ -3969,7 +4037,7 @@
 			fill_color 	12632256
 			width      	300
 			height     	132)
-		    (object NoteView @142
+		    (object NoteView @145
 			location   	(704, 624)
 			font       	(object Font
 			    size       	10
@@ -3985,7 +4053,7 @@
 			fill_color 	8421631
 			width      	300
 			height     	132)
-		    (object NoteView @143
+		    (object NoteView @146
 			location   	(1200, 624)
 			font       	(object Font
 			    size       	10
@@ -4001,7 +4069,7 @@
 			fill_color 	12615680
 			width      	300
 			height     	132)
-		    (object NoteView @144
+		    (object NoteView @147
 			location   	(1664, 624)
 			font       	(object Font
 			    size       	10
@@ -4017,7 +4085,7 @@
 			fill_color 	16777215
 			width      	300
 			height     	132)
-		    (object Label @145
+		    (object Label @148
 			location   	(81, 369)
 			font       	(object Font
 			    size       	12
@@ -4033,7 +4101,7 @@
 			max_width  	1163
 			justify    	1
 			label      	"J2EE: Java 2 Platform, Enterprise Edition - v 1.2.1")
-		    (object Label @146
+		    (object Label @149
 			location   	(96, 608)
 			font       	(object Font
 			    size       	10
@@ -4049,7 +4117,7 @@
 			max_width  	268
 			justify    	1
 			label      	"Abstract Class")
-		    (object Label @147
+		    (object Label @150
 			location   	(592, 608)
 			font       	(object Font
 			    size       	10
@@ -4065,7 +4133,7 @@
 			max_width  	225
 			justify    	1
 			label      	"Final Class")
-		    (object Label @148
+		    (object Label @151
 			location   	(1104, 608)
 			font       	(object Font
 			    size       	10
@@ -4081,7 +4149,7 @@
 			max_width  	206
 			justify    	1
 			label      	"Interface")
-		    (object Label @149
+		    (object Label @152
 			location   	(1552, 608)
 			font       	(object Font
 			    size       	10
@@ -4098,7 +4166,7 @@
 			justify    	1
 			label      	"Class")))
 	    (object InteractionDiagram "Sequence"
-		mechanism_ref 	@56
+		mechanism_ref 	@59
 		quid       	"692D685D01B1"
 		title      	"Sequence"
 		zoom       	100
@@ -4107,7 +4175,7 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object InterObjView "$UNNAMED$37" @150
+		    (object InterObjView "$UNNAMED$40" @153
 			location   	(1216, 288)
 			font       	(object Font
 			    size       	10
@@ -4120,7 +4188,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@150
+			    Parent_View 	@153
 			    location   	(1216, 313)
 			    anchor_loc 	1
 			    nlines     	2
@@ -4133,47 +4201,47 @@
 			fill_color 	13434879
 			quidu      	"692DAD7903CF"
 			width      	120
-			height     	5486
+			height     	5588
 			icon_height 	162
 			icon_width 	120
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @151
-			    location   	(1216, 3504)
-			    line_color 	3342489
-			    InterObjView 	@150
-			    height     	612
-			    y_coord    	522
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @152
-			    location   	(1216, 4016)
-			    line_color 	3342489
-			    InterObjView 	@150
-			    height     	1
-			    y_coord    	-89
-			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @153
-			    location   	(1216, 4176)
-			    line_color 	3342489
-			    InterObjView 	@150
-			    height     	692
-			    y_coord    	602
-			    Nested     	FALSE)
 			Focus_Of_Control 	(object Focus_Of_Control "" @154
-			    location   	(1216, 4768)
+			    location   	(1216, 3600)
 			    line_color 	3342489
-			    InterObjView 	@150
+			    InterObjView 	@153
+			    height     	628
+			    y_coord    	538
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @155
+			    location   	(1216, 4128)
+			    line_color 	3342489
+			    InterObjView 	@153
 			    height     	1
 			    y_coord    	-89
 			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @155
-			    location   	(1216, 4960)
+			Focus_Of_Control 	(object Focus_Of_Control "" @156
+			    location   	(1216, 4272)
 			    line_color 	3342489
-			    InterObjView 	@150
+			    InterObjView 	@153
+			    height     	708
+			    y_coord    	618
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @157
+			    location   	(1216, 4880)
+			    line_color 	3342489
+			    InterObjView 	@153
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @158
+			    location   	(1216, 5056)
+			    line_color 	3342489
+			    InterObjView 	@153
 			    height     	724
 			    y_coord    	634
 			    Nested     	FALSE))
-		    (object InterObjView "$UNNAMED$36" @156
+		    (object InterObjView "$UNNAMED$39" @159
 			location   	(1680, 336)
 			font       	(object Font
 			    size       	10
@@ -4186,7 +4254,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@156
+			    Parent_View 	@159
 			    location   	(1680, 361)
 			    anchor_loc 	1
 			    nlines     	2
@@ -4199,61 +4267,68 @@
 			fill_color 	13434879
 			quidu      	"692DAD3C0205"
 			width      	120
-			height     	5438
+			height     	5540
 			icon_height 	162
 			icon_width 	120
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @157
+			Focus_Of_Control 	(object Focus_Of_Control "" @160
 			    location   	(1680, 416)
 			    line_color 	3342489
-			    InterObjView 	@156
+			    InterObjView 	@159
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @158
-			    location   	(1680, 1360)
+			Focus_Of_Control 	(object Focus_Of_Control "" @161
+			    location   	(1680, 656)
 			    line_color 	3342489
-			    InterObjView 	@156
+			    InterObjView 	@159
+			    height     	91
+			    y_coord    	1
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @162
+			    location   	(1680, 1472)
+			    line_color 	3342489
+			    InterObjView 	@159
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @159
-			    location   	(1680, 1664)
+			Focus_Of_Control 	(object Focus_Of_Control "" @163
+			    location   	(1680, 1776)
 			    line_color 	3342489
-			    InterObjView 	@156
-			    height     	943
-			    y_coord    	853
+			    InterObjView 	@159
+			    height     	932
+			    y_coord    	842
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @160
-			    location   	(1680, 2512)
+			Focus_Of_Control 	(object Focus_Of_Control "" @164
+			    location   	(1680, 2608)
 			    line_color 	3342489
-			    InterObjView 	@156
+			    InterObjView 	@159
 			    height     	1
 			    y_coord    	-89
 			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @161
-			    location   	(1680, 2688)
+			Focus_Of_Control 	(object Focus_Of_Control "" @165
+			    location   	(1680, 2800)
 			    line_color 	3342489
-			    InterObjView 	@156
+			    InterObjView 	@159
 			    height     	724
 			    y_coord    	634
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @162
-			    location   	(1680, 3312)
+			Focus_Of_Control 	(object Focus_Of_Control "" @166
+			    location   	(1680, 3424)
 			    line_color 	3342489
-			    InterObjView 	@156
+			    InterObjView 	@159
 			    height     	1
 			    y_coord    	-89
 			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @163
-			    location   	(1680, 5072)
+			Focus_Of_Control 	(object Focus_Of_Control "" @167
+			    location   	(1680, 5168)
 			    line_color 	3342489
-			    InterObjView 	@156
-			    height     	83
-			    y_coord    	-7
+			    InterObjView 	@159
+			    height     	90
+			    y_coord    	0
 			    Nested     	FALSE))
-		    (object InterObjView "Неавторизованный пользователь" @164
+		    (object InterObjView "Неавторизованный пользователь" @168
 			location   	(2160, 352)
 			font       	(object Font
 			    size       	10
@@ -4266,7 +4341,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@164
+			    Parent_View 	@168
 			    location   	(2160, 377)
 			    anchor_loc 	1
 			    nlines     	2
@@ -4279,32 +4354,32 @@
 			fill_color 	13434879
 			quidu      	"692DA7520103"
 			width      	120
-			height     	5422
+			height     	5524
 			icon_height 	162
 			icon_width 	120
 			icon_y_offset 	0
-			Focus_Of_Control 	(object Focus_Of_Control "" @165
+			Focus_Of_Control 	(object Focus_Of_Control "" @169
 			    location   	(2160, 432)
 			    line_color 	3342489
-			    InterObjView 	@164
+			    InterObjView 	@168
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @166
+			Focus_Of_Control 	(object Focus_Of_Control "" @170
 			    location   	(2160, 560)
 			    line_color 	3342489
-			    InterObjView 	@164
+			    InterObjView 	@168
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @167
-			    location   	(2160, 5584)
+			Focus_Of_Control 	(object Focus_Of_Control "" @171
+			    location   	(2160, 5696)
 			    line_color 	3342489
-			    InterObjView 	@164
+			    InterObjView 	@168
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE))
-		    (object InterObjView "Веб-приложение" @168
+		    (object InterObjView "Веб-приложение" @172
 			location   	(3328, 224)
 			font       	(object Font
 			    size       	10
@@ -4317,7 +4392,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@168
+			    Parent_View 	@172
 			    location   	(3328, 250)
 			    anchor_loc 	1
 			    nlines     	2
@@ -4330,124 +4405,131 @@
 			fill_color 	13434879
 			quidu      	"692DA75200BA"
 			width      	57
-			height     	5550
+			height     	5652
 			icon_height 	57
 			icon_width 	57
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @169
+			Focus_Of_Control 	(object Focus_Of_Control "" @173
 			    location   	(3328, 560)
 			    line_color 	3342489
-			    InterObjView 	@168
-			    height     	805
-			    y_coord    	715
+			    InterObjView 	@172
+			    height     	908
+			    y_coord    	818
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @170
-			    location   	(3328, 1264)
-			    line_color 	3342489
-			    InterObjView 	@168
-			    height     	1
-			    y_coord    	-89
-			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @171
-			    location   	(3328, 1664)
-			    line_color 	3342489
-			    InterObjView 	@168
-			    height     	845
-			    y_coord    	755
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @172
-			    location   	(3328, 1776)
-			    line_color 	3342489
-			    InterObjView 	@168
-			    height     	156
-			    y_coord    	66
-			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @173
-			    location   	(3328, 1872)
-			    line_color 	3342489
-			    InterObjView 	@168
-			    height     	172
-			    y_coord    	82
-			    Nested     	TRUE)
 			Focus_Of_Control 	(object Focus_Of_Control "" @174
-			    location   	(3328, 1984)
+			    location   	(3328, 656)
 			    line_color 	3342489
-			    InterObjView 	@168
+			    InterObjView 	@172
 			    height     	90
 			    y_coord    	0
 			    Nested     	TRUE)
 			Focus_Of_Control 	(object Focus_Of_Control "" @175
-			    location   	(3328, 2400)
+			    location   	(3328, 1360)
 			    line_color 	3342489
-			    InterObjView 	@168
+			    InterObjView 	@172
 			    height     	1
 			    y_coord    	-89
 			    Nested     	TRUE)
 			Focus_Of_Control 	(object Focus_Of_Control "" @176
-			    location   	(3328, 2688)
+			    location   	(3328, 1776)
 			    line_color 	3342489
-			    InterObjView 	@168
-			    height     	631
-			    y_coord    	541
+			    InterObjView 	@172
+			    height     	836
+			    y_coord    	746
 			    Nested     	FALSE)
 			Focus_Of_Control 	(object Focus_Of_Control "" @177
-			    location   	(3328, 3216)
+			    location   	(3328, 1872)
 			    line_color 	3342489
-			    InterObjView 	@168
-			    height     	1
-			    y_coord    	-89
+			    InterObjView 	@172
+			    height     	172
+			    y_coord    	82
 			    Nested     	TRUE)
 			Focus_Of_Control 	(object Focus_Of_Control "" @178
-			    location   	(3328, 3504)
+			    location   	(3328, 1984)
 			    line_color 	3342489
-			    InterObjView 	@168
-			    height     	517
-			    y_coord    	427
-			    Nested     	FALSE)
+			    InterObjView 	@172
+			    height     	156
+			    y_coord    	66
+			    Nested     	TRUE)
 			Focus_Of_Control 	(object Focus_Of_Control "" @179
-			    location   	(3328, 3920)
+			    location   	(3328, 2080)
 			    line_color 	3342489
-			    InterObjView 	@168
-			    height     	1
-			    y_coord    	-89
-			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @180
-			    location   	(3328, 4176)
-			    line_color 	3342489
-			    InterObjView 	@168
-			    height     	596
-			    y_coord    	506
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @181
-			    location   	(3328, 4672)
-			    line_color 	3342489
-			    InterObjView 	@168
-			    height     	1
-			    y_coord    	-89
-			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @182
-			    location   	(3328, 4960)
-			    line_color 	3342489
-			    InterObjView 	@168
-			    height     	630
-			    y_coord    	540
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @183
-			    location   	(3328, 5072)
-			    line_color 	3342489
-			    InterObjView 	@168
+			    InterObjView 	@172
 			    height     	90
 			    y_coord    	0
 			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @184
-			    location   	(3328, 5488)
+			Focus_Of_Control 	(object Focus_Of_Control "" @180
+			    location   	(3328, 2512)
 			    line_color 	3342489
-			    InterObjView 	@168
+			    InterObjView 	@172
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @181
+			    location   	(3328, 2800)
+			    line_color 	3342489
+			    InterObjView 	@172
+			    height     	622
+			    y_coord    	532
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @182
+			    location   	(3328, 3312)
+			    line_color 	3342489
+			    InterObjView 	@172
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @183
+			    location   	(3328, 3600)
+			    line_color 	3342489
+			    InterObjView 	@172
+			    height     	524
+			    y_coord    	434
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @184
+			    location   	(3328, 4016)
+			    line_color 	3342489
+			    InterObjView 	@172
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @185
+			    location   	(3328, 4272)
+			    line_color 	3342489
+			    InterObjView 	@172
+			    height     	601
+			    y_coord    	511
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @186
+			    location   	(3328, 4768)
+			    line_color 	3342489
+			    InterObjView 	@172
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @187
+			    location   	(3328, 5056)
+			    line_color 	3342489
+			    InterObjView 	@172
+			    height     	637
+			    y_coord    	547
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @188
+			    location   	(3328, 5168)
+			    line_color 	3342489
+			    InterObjView 	@172
+			    height     	90
+			    y_coord    	0
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @189
+			    location   	(3328, 5584)
+			    line_color 	3342489
+			    InterObjView 	@172
 			    height     	1
 			    y_coord    	-89
 			    Nested     	TRUE))
-		    (object InterObjView "API" @185
+		    (object InterObjView "API" @190
 			location   	(4574, 240)
 			font       	(object Font
 			    size       	10
@@ -4460,7 +4542,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@185
+			    Parent_View 	@190
 			    location   	(4574, 240)
 			    fill_color 	13434879
 			    anchor_loc 	1
@@ -4473,110 +4555,110 @@
 			fill_color 	13434879
 			quidu      	"692DA75200D9"
 			width      	300
-			height     	5534
+			height     	5636
 			icon_height 	0
 			icon_width 	0
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @186
+			Focus_Of_Control 	(object Focus_Of_Control "" @191
 			    location   	(4574, 320)
 			    line_color 	3342489
-			    InterObjView 	@185
+			    InterObjView 	@190
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @187
-			    location   	(4574, 656)
+			Focus_Of_Control 	(object Focus_Of_Control "" @192
+			    location   	(4574, 768)
 			    line_color 	3342489
-			    InterObjView 	@185
-			    height     	204
-			    y_coord    	114
+			    InterObjView 	@190
+			    height     	195
+			    y_coord    	105
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @188
-			    location   	(4574, 800)
+			Focus_Of_Control 	(object Focus_Of_Control "" @193
+			    location   	(4574, 896)
 			    line_color 	3342489
-			    InterObjView 	@185
-			    height     	460
-			    y_coord    	370
+			    InterObjView 	@190
+			    height     	467
+			    y_coord    	377
 			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @189
-			    location   	(4574, 1152)
+			Focus_Of_Control 	(object Focus_Of_Control "" @194
+			    location   	(4574, 1264)
 			    line_color 	3342489
-			    InterObjView 	@185
+			    InterObjView 	@190
 			    height     	1
 			    y_coord    	-89
 			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @190
-			    location   	(4574, 2096)
+			Focus_Of_Control 	(object Focus_Of_Control "" @195
+			    location   	(4574, 2192)
 			    line_color 	3342489
-			    InterObjView 	@185
+			    InterObjView 	@190
+			    height     	315
+			    y_coord    	225
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @196
+			    location   	(4574, 2400)
+			    line_color 	3342489
+			    InterObjView 	@190
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @197
+			    location   	(4574, 2896)
+			    line_color 	3342489
+			    InterObjView 	@190
+			    height     	421
+			    y_coord    	331
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @198
+			    location   	(4574, 3216)
+			    line_color 	3342489
+			    InterObjView 	@190
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @199
+			    location   	(4574, 3712)
+			    line_color 	3342489
+			    InterObjView 	@190
+			    height     	307
+			    y_coord    	217
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @200
+			    location   	(4574, 3920)
+			    line_color 	3342489
+			    InterObjView 	@190
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @201
+			    location   	(4574, 4384)
+			    line_color 	3342489
+			    InterObjView 	@190
+			    height     	384
+			    y_coord    	294
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @202
+			    location   	(4574, 4656)
+			    line_color 	3342489
+			    InterObjView 	@190
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @203
+			    location   	(4574, 5280)
+			    line_color 	3342489
+			    InterObjView 	@190
 			    height     	308
 			    y_coord    	218
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @191
-			    location   	(4574, 2304)
+			Focus_Of_Control 	(object Focus_Of_Control "" @204
+			    location   	(4574, 5488)
 			    line_color 	3342489
-			    InterObjView 	@185
-			    height     	1
-			    y_coord    	-89
-			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @192
-			    location   	(4574, 2800)
-			    line_color 	3342489
-			    InterObjView 	@185
-			    height     	414
-			    y_coord    	324
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @193
-			    location   	(4574, 3104)
-			    line_color 	3342489
-			    InterObjView 	@185
-			    height     	1
-			    y_coord    	-89
-			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @194
-			    location   	(4574, 3600)
-			    line_color 	3342489
-			    InterObjView 	@185
-			    height     	316
-			    y_coord    	226
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @195
-			    location   	(4574, 3808)
-			    line_color 	3342489
-			    InterObjView 	@185
-			    height     	1
-			    y_coord    	-89
-			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @196
-			    location   	(4574, 4288)
-			    line_color 	3342489
-			    InterObjView 	@185
-			    height     	377
-			    y_coord    	287
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @197
-			    location   	(4574, 4560)
-			    line_color 	3342489
-			    InterObjView 	@185
-			    height     	1
-			    y_coord    	-89
-			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @198
-			    location   	(4574, 5168)
-			    line_color 	3342489
-			    InterObjView 	@185
-			    height     	317
-			    y_coord    	227
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @199
-			    location   	(4574, 5376)
-			    line_color 	3342489
-			    InterObjView 	@185
+			    InterObjView 	@190
 			    height     	1
 			    y_coord    	-89
 			    Nested     	TRUE))
-		    (object InterObjView "База данных" @200
+		    (object InterObjView "База данных" @205
 			location   	(5710, 225)
 			font       	(object Font
 			    size       	10
@@ -4589,7 +4671,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@200
+			    Parent_View 	@205
 			    location   	(5710, 225)
 			    fill_color 	13434879
 			    anchor_loc 	1
@@ -4602,54 +4684,54 @@
 			fill_color 	13434879
 			quidu      	"692DA75200F4"
 			width      	300
-			height     	5549
+			height     	5651
 			icon_height 	0
 			icon_width 	0
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @201
-			    location   	(5710, 896)
+			Focus_Of_Control 	(object Focus_Of_Control "" @206
+			    location   	(5710, 1008)
 			    line_color 	3342489
-			    InterObjView 	@200
+			    InterObjView 	@205
 			    height     	349
 			    y_coord    	259
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @202
-			    location   	(5710, 2192)
+			Focus_Of_Control 	(object Focus_Of_Control "" @207
+			    location   	(5710, 2304)
 			    line_color 	3342489
-			    InterObjView 	@200
+			    InterObjView 	@205
 			    height     	199
 			    y_coord    	109
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @203
-			    location   	(5710, 2896)
+			Focus_Of_Control 	(object Focus_Of_Control "" @208
+			    location   	(5710, 3008)
 			    line_color 	3342489
-			    InterObjView 	@200
+			    InterObjView 	@205
 			    height     	301
 			    y_coord    	211
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @204
-			    location   	(5710, 3712)
+			Focus_Of_Control 	(object Focus_Of_Control "" @209
+			    location   	(5710, 3808)
 			    line_color 	3342489
-			    InterObjView 	@200
-			    height     	99
-			    y_coord    	9
+			    InterObjView 	@205
+			    height     	196
+			    y_coord    	106
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @205
-			    location   	(5710, 4384)
+			Focus_Of_Control 	(object Focus_Of_Control "" @210
+			    location   	(5710, 4496)
 			    line_color 	3342489
-			    InterObjView 	@200
-			    height     	176
-			    y_coord    	86
+			    InterObjView 	@205
+			    height     	257
+			    y_coord    	167
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @206
-			    location   	(5710, 5280)
+			Focus_Of_Control 	(object Focus_Of_Control "" @211
+			    location   	(5710, 5376)
 			    line_color 	3342489
-			    InterObjView 	@200
-			    height     	100
-			    y_coord    	10
+			    InterObjView 	@205
+			    height     	197
+			    y_coord    	107
 			    Nested     	FALSE))
-		    (object InterMessView "Войти в личный кабинет" @207
+		    (object InterMessView "Войти в личный кабинет" @212
 			location   	(16, 552)
 			font       	(object Font
 			    size       	10
@@ -4661,8 +4743,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @208
-			    Parent_View 	@207
+			label      	(object SegLabel @213
+			    Parent_View 	@212
 			    location   	(2722, 510)
 			    font       	(object Font
 				size       	10
@@ -4684,15 +4766,15 @@
 			    height     	43
 			    orientation 	0)
 			line_color 	3342489
-			client     	@164
-			supplier   	@168
-			Focus_Src  	@166
-			Focus_Entry 	@169
+			client     	@168
+			supplier   	@172
+			Focus_Src  	@170
+			Focus_Entry 	@173
 			origin     	(2175, 552)
 			terminus   	(3312, 552)
 			ordinal    	0)
-		    (object InterMessView "Авторизоваться" @209
-			location   	(16, 659)
+		    (object InterMessView "Авторизоваться" @214
+			location   	(16, 762)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -4703,9 +4785,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @210
-			    Parent_View 	@209
-			    location   	(3950, 615)
+			label      	(object SegLabel @215
+			    Parent_View 	@214
+			    location   	(3950, 718)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -4726,15 +4808,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@168
-			supplier   	@185
-			Focus_Src  	@169
-			Focus_Entry 	@187
-			origin     	(3343, 659)
-			terminus   	(4558, 659)
-			ordinal    	1)
-		    (object SelfMessView "Проверка прав и выдача токена" @211
-			location   	(16, 770)
+			client     	@172
+			supplier   	@190
+			Focus_Src  	@173
+			Focus_Entry 	@192
+			origin     	(3343, 762)
+			terminus   	(4558, 762)
+			ordinal    	2)
+		    (object SelfMessView "Проверка прав и выдача токена" @216
+			location   	(16, 873)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -4745,9 +4827,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @212
-			    Parent_View 	@211
-			    location   	(4903, 715)
+			label      	(object SegLabel @217
+			    Parent_View 	@216
+			    location   	(4903, 818)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -4768,15 +4850,15 @@
 			    height     	56
 			    orientation 	0)
 			line_color 	3342489
-			client     	@185
-			supplier   	@185
-			Focus_Src  	@187
-			Focus_Entry 	@188
-			origin     	(4590, 770)
-			terminus   	(4740, 770)
-			ordinal    	2)
-		    (object InterMessView "Запись пользователя и его токена(array,access token)" @213
-			location   	(16, 900)
+			client     	@190
+			supplier   	@190
+			Focus_Src  	@192
+			Focus_Entry 	@193
+			origin     	(4590, 873)
+			terminus   	(4740, 873)
+			ordinal    	3)
+		    (object InterMessView "Запись пользователя и его токена(array,access token)" @218
+			location   	(16, 1003)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -4787,9 +4869,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @214
-			    Parent_View 	@213
-			    location   	(5141, 856)
+			label      	(object SegLabel @219
+			    Parent_View 	@218
+			    location   	(5141, 959)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -4810,15 +4892,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@185
-			supplier   	@200
-			Focus_Src  	@188
-			Focus_Entry 	@201
-			origin     	(4589, 900)
-			terminus   	(5694, 900)
-			ordinal    	3)
-		    (object InterMessView "Передача токена(access token)" @215
-			location   	(16, 1155)
+			client     	@190
+			supplier   	@205
+			Focus_Src  	@193
+			Focus_Entry 	@206
+			origin     	(4589, 1003)
+			terminus   	(5694, 1003)
+			ordinal    	4)
+		    (object InterMessView "Передача токена(access token)" @220
+			location   	(16, 1258)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -4829,9 +4911,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @216
-			    Parent_View 	@215
-			    location   	(5142, 1111)
+			label      	(object SegLabel @221
+			    Parent_View 	@220
+			    location   	(5142, 1214)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -4852,15 +4934,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@200
-			supplier   	@185
-			Focus_Src  	@201
-			Focus_Entry 	@189
-			origin     	(5694, 1155)
-			terminus   	(4590, 1155)
-			ordinal    	4)
-		    (object InterMessView "Отрисовать админ-панель(role)" @217
-			location   	(16, 1260)
+			client     	@205
+			supplier   	@190
+			Focus_Src  	@206
+			Focus_Entry 	@194
+			origin     	(5694, 1258)
+			terminus   	(4590, 1258)
+			ordinal    	5)
+		    (object InterMessView "Отрисовать админ-панель(role)" @222
+			location   	(16, 1363)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -4871,9 +4953,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @218
-			    Parent_View 	@217
-			    location   	(3951, 1217)
+			label      	(object SegLabel @223
+			    Parent_View 	@222
+			    location   	(3951, 1320)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -4894,15 +4976,15 @@
 			    height     	44
 			    orientation 	1)
 			line_color 	3342489
-			client     	@185
-			supplier   	@168
-			Focus_Src  	@188
-			Focus_Entry 	@170
-			origin     	(4558, 1260)
-			terminus   	(3344, 1260)
-			ordinal    	5)
-		    (object InterMessView "Направить на страницу агента" @219
-			location   	(16, 1365)
+			client     	@190
+			supplier   	@172
+			Focus_Src  	@193
+			Focus_Entry 	@175
+			origin     	(4558, 1363)
+			terminus   	(3344, 1363)
+			ordinal    	6)
+		    (object InterMessView "Направить на страницу агента" @224
+			location   	(16, 1468)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -4913,9 +4995,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @220
-			    Parent_View 	@219
-			    location   	(2504, 1321)
+			label      	(object SegLabel @225
+			    Parent_View 	@224
+			    location   	(2504, 1424)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -4936,15 +5018,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@168
-			supplier   	@156
-			Focus_Src  	@169
-			Focus_Entry 	@158
-			origin     	(3312, 1365)
-			terminus   	(1696, 1365)
-			ordinal    	6)
-		    (object InterMessView "Просмотреть список конкурсов" @221
-			location   	(16, 1669)
+			client     	@172
+			supplier   	@159
+			Focus_Src  	@173
+			Focus_Entry 	@162
+			origin     	(3312, 1468)
+			terminus   	(1696, 1468)
+			ordinal    	7)
+		    (object InterMessView "Просмотреть список конкурсов" @226
+			location   	(16, 1772)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -4955,9 +5037,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @222
-			    Parent_View 	@221
-			    location   	(2503, 1625)
+			label      	(object SegLabel @227
+			    Parent_View 	@226
+			    location   	(2503, 1728)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -4978,15 +5060,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@156
-			supplier   	@168
-			Focus_Src  	@159
-			Focus_Entry 	@171
-			origin     	(1695, 1669)
-			terminus   	(3312, 1669)
-			ordinal    	7)
-		    (object InterMessView "Получить массив конкурсов" @223
-			location   	(16, 2089)
+			client     	@159
+			supplier   	@172
+			Focus_Src  	@163
+			Focus_Entry 	@176
+			origin     	(1695, 1772)
+			terminus   	(3312, 1772)
+			ordinal    	8)
+		    (object InterMessView "Получить массив конкурсов" @228
+			location   	(16, 2192)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -4997,9 +5079,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @224
-			    Parent_View 	@223
-			    location   	(3950, 2045)
+			label      	(object SegLabel @229
+			    Parent_View 	@228
+			    location   	(3950, 2148)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5020,15 +5102,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@168
-			supplier   	@185
-			Focus_Src  	@171
-			Focus_Entry 	@190
-			origin     	(3343, 2089)
-			terminus   	(4558, 2089)
-			ordinal    	11)
-		    (object InterMessView "Получить данные из таблицы" @225
-			location   	(16, 2194)
+			client     	@172
+			supplier   	@190
+			Focus_Src  	@176
+			Focus_Entry 	@195
+			origin     	(3343, 2192)
+			terminus   	(4558, 2192)
+			ordinal    	12)
+		    (object InterMessView "Получить данные из таблицы" @230
+			location   	(16, 2297)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5039,9 +5121,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @226
-			    Parent_View 	@225
-			    location   	(5141, 2150)
+			label      	(object SegLabel @231
+			    Parent_View 	@230
+			    location   	(5141, 2253)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5062,15 +5144,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@185
-			supplier   	@200
-			Focus_Src  	@190
-			Focus_Entry 	@202
-			origin     	(4589, 2194)
-			terminus   	(5694, 2194)
-			ordinal    	12)
-		    (object InterMessView "Направить массив конкурсов(request)" @227
-			location   	(16, 2299)
+			client     	@190
+			supplier   	@205
+			Focus_Src  	@195
+			Focus_Entry 	@207
+			origin     	(4589, 2297)
+			terminus   	(5694, 2297)
+			ordinal    	13)
+		    (object InterMessView "Направить массив конкурсов(request)" @232
+			location   	(16, 2402)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5081,9 +5163,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @228
-			    Parent_View 	@227
-			    location   	(5142, 2255)
+			label      	(object SegLabel @233
+			    Parent_View 	@232
+			    location   	(5142, 2358)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5104,15 +5186,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@200
-			supplier   	@185
-			Focus_Src  	@202
-			Focus_Entry 	@191
-			origin     	(5694, 2299)
-			terminus   	(4590, 2299)
-			ordinal    	13)
-		    (object InterMessView "Отправить JSON список" @229
-			location   	(16, 2404)
+			client     	@205
+			supplier   	@190
+			Focus_Src  	@207
+			Focus_Entry 	@196
+			origin     	(5694, 2402)
+			terminus   	(4590, 2402)
+			ordinal    	14)
+		    (object InterMessView "Отправить JSON список" @234
+			location   	(16, 2507)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5123,9 +5205,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @230
-			    Parent_View 	@229
-			    location   	(3951, 2360)
+			label      	(object SegLabel @235
+			    Parent_View 	@234
+			    location   	(3951, 2463)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5146,15 +5228,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@185
-			supplier   	@168
-			Focus_Src  	@190
-			Focus_Entry 	@175
-			origin     	(4558, 2404)
-			terminus   	(3344, 2404)
-			ordinal    	14)
-		    (object InterMessView "Отобразить конкурсы на странице" @231
-			location   	(16, 2509)
+			client     	@190
+			supplier   	@172
+			Focus_Src  	@195
+			Focus_Entry 	@180
+			origin     	(4558, 2507)
+			terminus   	(3344, 2507)
+			ordinal    	15)
+		    (object InterMessView "Отобразить конкурсы на странице" @236
+			location   	(16, 2612)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5165,9 +5247,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @232
-			    Parent_View 	@231
-			    location   	(2504, 2465)
+			label      	(object SegLabel @237
+			    Parent_View 	@236
+			    location   	(2504, 2568)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5188,15 +5270,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@168
-			supplier   	@156
-			Focus_Src  	@171
-			Focus_Entry 	@160
-			origin     	(3312, 2509)
-			terminus   	(1696, 2509)
-			ordinal    	15)
-		    (object InterMessView "Поиск конкурсов из списка" @233
-			location   	(16, 1774)
+			client     	@172
+			supplier   	@159
+			Focus_Src  	@176
+			Focus_Entry 	@164
+			origin     	(3312, 2612)
+			terminus   	(1696, 2612)
+			ordinal    	16)
+		    (object InterMessView "Поиск конкурсов из списка" @238
+			location   	(16, 1877)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5207,9 +5289,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @234
-			    Parent_View 	@233
-			    location   	(2503, 1730)
+			label      	(object SegLabel @239
+			    Parent_View 	@238
+			    location   	(2503, 1833)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5230,15 +5312,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@156
-			supplier   	@168
-			Focus_Src  	@159
-			Focus_Entry 	@172
-			origin     	(1695, 1774)
-			terminus   	(3312, 1774)
-			ordinal    	8)
-		    (object InterMessView "Фильтрация конкурсов в списке" @235
-			location   	(16, 1879)
+			client     	@159
+			supplier   	@172
+			Focus_Src  	@163
+			Focus_Entry 	@177
+			origin     	(1695, 1877)
+			terminus   	(3312, 1877)
+			ordinal    	9)
+		    (object InterMessView "Фильтрация конкурсов в списке" @240
+			location   	(16, 1982)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5249,9 +5331,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @236
-			    Parent_View 	@235
-			    location   	(2503, 1835)
+			label      	(object SegLabel @241
+			    Parent_View 	@240
+			    location   	(2503, 1938)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5272,15 +5354,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@156
-			supplier   	@168
-			Focus_Src  	@159
-			Focus_Entry 	@173
-			origin     	(1695, 1879)
-			terminus   	(3312, 1879)
-			ordinal    	9)
-		    (object InterMessView "Обновить список конкурсов" @237
-			location   	(16, 1984)
+			client     	@159
+			supplier   	@172
+			Focus_Src  	@163
+			Focus_Entry 	@178
+			origin     	(1695, 1982)
+			terminus   	(3312, 1982)
+			ordinal    	10)
+		    (object InterMessView "Обновить список конкурсов" @242
+			location   	(16, 2087)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5291,9 +5373,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @238
-			    Parent_View 	@237
-			    location   	(2503, 1940)
+			label      	(object SegLabel @243
+			    Parent_View 	@242
+			    location   	(2503, 2043)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5314,15 +5396,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@156
-			supplier   	@168
-			Focus_Src  	@159
-			Focus_Entry 	@174
-			origin     	(1695, 1984)
-			terminus   	(3312, 1984)
-			ordinal    	10)
-		    (object InterMessView "Просмотр детальной информации о конкурсе" @239
-			location   	(16, 2693)
+			client     	@159
+			supplier   	@172
+			Focus_Src  	@163
+			Focus_Entry 	@179
+			origin     	(1695, 2087)
+			terminus   	(3312, 2087)
+			ordinal    	11)
+		    (object InterMessView "Просмотр детальной информации о конкурсе" @244
+			location   	(16, 2796)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5333,9 +5415,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @240
-			    Parent_View 	@239
-			    location   	(2503, 2649)
+			label      	(object SegLabel @245
+			    Parent_View 	@244
+			    location   	(2503, 2752)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5356,15 +5438,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@156
-			supplier   	@168
-			Focus_Src  	@161
-			Focus_Entry 	@176
-			origin     	(1695, 2693)
-			terminus   	(3312, 2693)
-			ordinal    	16)
-		    (object InterMessView "Получить конкурс по id" @241
-			location   	(16, 2798)
+			client     	@159
+			supplier   	@172
+			Focus_Src  	@165
+			Focus_Entry 	@181
+			origin     	(1695, 2796)
+			terminus   	(3312, 2796)
+			ordinal    	17)
+		    (object InterMessView "Получить конкурс по id" @246
+			location   	(16, 2901)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5375,9 +5457,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @242
-			    Parent_View 	@241
-			    location   	(3950, 2754)
+			label      	(object SegLabel @247
+			    Parent_View 	@246
+			    location   	(3950, 2857)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5398,15 +5480,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@168
-			supplier   	@185
-			Focus_Src  	@176
-			Focus_Entry 	@192
-			origin     	(3343, 2798)
-			terminus   	(4558, 2798)
-			ordinal    	17)
-		    (object InterMessView "Получить данные из таблицы" @243
-			location   	(16, 2903)
+			client     	@172
+			supplier   	@190
+			Focus_Src  	@181
+			Focus_Entry 	@197
+			origin     	(3343, 2901)
+			terminus   	(4558, 2901)
+			ordinal    	18)
+		    (object InterMessView "Получить данные из таблицы" @248
+			location   	(16, 3006)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5417,9 +5499,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @244
-			    Parent_View 	@243
-			    location   	(5141, 2859)
+			label      	(object SegLabel @249
+			    Parent_View 	@248
+			    location   	(5141, 2962)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5440,15 +5522,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@185
-			supplier   	@200
-			Focus_Src  	@192
-			Focus_Entry 	@203
-			origin     	(4589, 2903)
-			terminus   	(5694, 2903)
-			ordinal    	18)
-		    (object InterMessView "Направить данные конкурса(сырая и структурированная информация)" @245
-			location   	(16, 3109)
+			client     	@190
+			supplier   	@205
+			Focus_Src  	@197
+			Focus_Entry 	@208
+			origin     	(4589, 3006)
+			terminus   	(5694, 3006)
+			ordinal    	19)
+		    (object InterMessView "Направить данные конкурса(сырая и структурированная информация)" @250
+			location   	(16, 3212)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5459,9 +5541,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @246
-			    Parent_View 	@245
-			    location   	(5148, 3070)
+			label      	(object SegLabel @251
+			    Parent_View 	@250
+			    location   	(5148, 3173)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5482,15 +5564,15 @@
 			    height     	40
 			    orientation 	1)
 			line_color 	3342489
-			client     	@200
-			supplier   	@185
-			Focus_Src  	@203
-			Focus_Entry 	@193
-			origin     	(5694, 3109)
-			terminus   	(4590, 3109)
-			ordinal    	19)
-		    (object InterMessView "JSON с полными параметрами" @247
-			location   	(16, 3214)
+			client     	@205
+			supplier   	@190
+			Focus_Src  	@208
+			Focus_Entry 	@198
+			origin     	(5694, 3212)
+			terminus   	(4590, 3212)
+			ordinal    	20)
+		    (object InterMessView "JSON с полными параметрами" @252
+			location   	(16, 3317)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5501,9 +5583,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @248
-			    Parent_View 	@247
-			    location   	(3951, 3170)
+			label      	(object SegLabel @253
+			    Parent_View 	@252
+			    location   	(3951, 3273)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5524,15 +5606,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@185
-			supplier   	@168
-			Focus_Src  	@192
-			Focus_Entry 	@177
-			origin     	(4558, 3214)
-			terminus   	(3344, 3214)
-			ordinal    	20)
-		    (object InterMessView "Показать детали конкурса" @249
-			location   	(16, 3319)
+			client     	@190
+			supplier   	@172
+			Focus_Src  	@197
+			Focus_Entry 	@182
+			origin     	(4558, 3317)
+			terminus   	(3344, 3317)
+			ordinal    	21)
+		    (object InterMessView "Показать детали конкурса" @254
+			location   	(16, 3422)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5543,9 +5625,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @250
-			    Parent_View 	@249
-			    location   	(2504, 3275)
+			label      	(object SegLabel @255
+			    Parent_View 	@254
+			    location   	(2504, 3378)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5566,15 +5648,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@168
-			supplier   	@156
-			Focus_Src  	@176
-			Focus_Entry 	@162
-			origin     	(3312, 3319)
-			terminus   	(1696, 3319)
-			ordinal    	21)
-		    (object InterMessView "Управлять пользователями" @251
-			location   	(16, 3496)
+			client     	@172
+			supplier   	@159
+			Focus_Src  	@181
+			Focus_Entry 	@166
+			origin     	(3312, 3422)
+			terminus   	(1696, 3422)
+			ordinal    	22)
+		    (object InterMessView "Управлять пользователями" @256
+			location   	(16, 3599)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5585,9 +5667,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @252
-			    Parent_View 	@251
-			    location   	(2269, 3454)
+			label      	(object SegLabel @257
+			    Parent_View 	@256
+			    location   	(2269, 3557)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5608,15 +5690,15 @@
 			    height     	43
 			    orientation 	0)
 			line_color 	3342489
-			client     	@150
-			supplier   	@168
-			Focus_Src  	@151
-			Focus_Entry 	@178
-			origin     	(1231, 3496)
-			terminus   	(3312, 3496)
-			ordinal    	22)
-		    (object InterMessView "Вызвать функцию блокировки/восстановления пользователя" @253
-			location   	(16, 3601)
+			client     	@153
+			supplier   	@172
+			Focus_Src  	@154
+			Focus_Entry 	@183
+			origin     	(1231, 3599)
+			terminus   	(3312, 3599)
+			ordinal    	23)
+		    (object InterMessView "Вызвать функцию блокировки/восстановления пользователя" @258
+			location   	(16, 3704)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5627,9 +5709,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @254
-			    Parent_View 	@253
-			    location   	(3950, 3557)
+			label      	(object SegLabel @259
+			    Parent_View 	@258
+			    location   	(3950, 3660)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5650,15 +5732,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@168
-			supplier   	@185
-			Focus_Src  	@178
-			Focus_Entry 	@194
-			origin     	(3343, 3601)
-			terminus   	(4558, 3601)
-			ordinal    	23)
-		    (object InterMessView "Записать изменения в таблицу(array)" @255
-			location   	(16, 3706)
+			client     	@172
+			supplier   	@190
+			Focus_Src  	@183
+			Focus_Entry 	@199
+			origin     	(3343, 3704)
+			terminus   	(4558, 3704)
+			ordinal    	24)
+		    (object InterMessView "Записать изменения в таблицу(array)" @260
+			location   	(16, 3809)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5669,9 +5751,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @256
-			    Parent_View 	@255
-			    location   	(5141, 3662)
+			label      	(object SegLabel @261
+			    Parent_View 	@260
+			    location   	(5141, 3765)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5692,15 +5774,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@185
-			supplier   	@200
-			Focus_Src  	@194
-			Focus_Entry 	@204
-			origin     	(4589, 3706)
-			terminus   	(5694, 3706)
-			ordinal    	24)
-		    (object InterMessView "Передать статус пользователя(status)" @257
-			location   	(16, 3811)
+			client     	@190
+			supplier   	@205
+			Focus_Src  	@199
+			Focus_Entry 	@209
+			origin     	(4589, 3809)
+			terminus   	(5694, 3809)
+			ordinal    	25)
+		    (object InterMessView "Передать статус пользователя(status)" @262
+			location   	(16, 3914)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5711,9 +5793,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @258
-			    Parent_View 	@257
-			    location   	(5142, 3767)
+			label      	(object SegLabel @263
+			    Parent_View 	@262
+			    location   	(5142, 3870)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5734,15 +5816,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@200
-			supplier   	@185
-			Focus_Src  	@204
-			Focus_Entry 	@195
-			origin     	(5694, 3811)
-			terminus   	(4590, 3811)
-			ordinal    	25)
-		    (object InterMessView "Выдать доступ/закрыть доступ пользователю" @259
-			location   	(16, 3916)
+			client     	@205
+			supplier   	@190
+			Focus_Src  	@209
+			Focus_Entry 	@200
+			origin     	(5694, 3914)
+			terminus   	(4590, 3914)
+			ordinal    	26)
+		    (object InterMessView "Выдать доступ/закрыть доступ пользователю" @264
+			location   	(16, 4019)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5753,9 +5835,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @260
-			    Parent_View 	@259
-			    location   	(3951, 3872)
+			label      	(object SegLabel @265
+			    Parent_View 	@264
+			    location   	(3951, 3975)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5776,15 +5858,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@185
-			supplier   	@168
-			Focus_Src  	@194
-			Focus_Entry 	@179
-			origin     	(4558, 3916)
-			terminus   	(3344, 3916)
-			ordinal    	26)
-		    (object InterMessView "Отрисовать окно управления пользователями" @261
-			location   	(16, 4021)
+			client     	@190
+			supplier   	@172
+			Focus_Src  	@199
+			Focus_Entry 	@184
+			origin     	(4558, 4019)
+			terminus   	(3344, 4019)
+			ordinal    	27)
+		    (object InterMessView "Отрисовать окно управления пользователями" @266
+			location   	(16, 4124)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5795,9 +5877,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @262
-			    Parent_View 	@261
-			    location   	(2272, 3977)
+			label      	(object SegLabel @267
+			    Parent_View 	@266
+			    location   	(2272, 4080)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5818,15 +5900,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@168
-			supplier   	@150
-			Focus_Src  	@178
-			Focus_Entry 	@152
-			origin     	(3312, 4021)
-			terminus   	(1232, 4021)
-			ordinal    	27)
-		    (object InterMessView "Редактировать конкурс" @263
-			location   	(16, 4176)
+			client     	@172
+			supplier   	@153
+			Focus_Src  	@183
+			Focus_Entry 	@155
+			origin     	(3312, 4124)
+			terminus   	(1232, 4124)
+			ordinal    	28)
+		    (object InterMessView "Редактировать конкурс" @268
+			location   	(16, 4279)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5837,9 +5919,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @264
-			    Parent_View 	@263
-			    location   	(2271, 4132)
+			label      	(object SegLabel @269
+			    Parent_View 	@268
+			    location   	(2271, 4235)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5860,15 +5942,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@150
-			supplier   	@168
-			Focus_Src  	@153
-			Focus_Entry 	@180
-			origin     	(1231, 4176)
-			terminus   	(3312, 4176)
-			ordinal    	28)
-		    (object InterMessView "Передать обновлённые данные конкурса" @265
-			location   	(16, 4281)
+			client     	@153
+			supplier   	@172
+			Focus_Src  	@156
+			Focus_Entry 	@185
+			origin     	(1231, 4279)
+			terminus   	(3312, 4279)
+			ordinal    	29)
+		    (object InterMessView "Передать обновлённые данные конкурса" @270
+			location   	(16, 4384)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5879,9 +5961,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @266
-			    Parent_View 	@265
-			    location   	(3950, 4237)
+			label      	(object SegLabel @271
+			    Parent_View 	@270
+			    location   	(3950, 4340)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5902,15 +5984,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@168
-			supplier   	@185
-			Focus_Src  	@180
-			Focus_Entry 	@196
-			origin     	(3343, 4281)
-			terminus   	(4558, 4281)
-			ordinal    	29)
-		    (object InterMessView "Записать изменения в таблицу(array)" @267
-			location   	(16, 4386)
+			client     	@172
+			supplier   	@190
+			Focus_Src  	@185
+			Focus_Entry 	@201
+			origin     	(3343, 4384)
+			terminus   	(4558, 4384)
+			ordinal    	30)
+		    (object InterMessView "Записать изменения в таблицу(array)" @272
+			location   	(16, 4489)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5921,9 +6003,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @268
-			    Parent_View 	@267
-			    location   	(5141, 4342)
+			label      	(object SegLabel @273
+			    Parent_View 	@272
+			    location   	(5141, 4445)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5944,15 +6026,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@185
-			supplier   	@200
-			Focus_Src  	@196
-			Focus_Entry 	@205
-			origin     	(4589, 4386)
-			terminus   	(5694, 4386)
-			ordinal    	30)
-		    (object InterMessView "Передать успешное сохранение обновлённых данных" @269
-			location   	(16, 4560)
+			client     	@190
+			supplier   	@205
+			Focus_Src  	@201
+			Focus_Entry 	@210
+			origin     	(4589, 4489)
+			terminus   	(5694, 4489)
+			ordinal    	31)
+		    (object InterMessView "Передать успешное сохранение обновлённых данных" @274
+			location   	(16, 4663)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5963,9 +6045,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @270
-			    Parent_View 	@269
-			    location   	(5142, 4516)
+			label      	(object SegLabel @275
+			    Parent_View 	@274
+			    location   	(5142, 4619)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -5986,15 +6068,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@200
-			supplier   	@185
-			Focus_Src  	@205
-			Focus_Entry 	@197
-			origin     	(5694, 4560)
-			terminus   	(4590, 4560)
-			ordinal    	31)
-		    (object InterMessView "Сообщить, что изменения успешно внесены" @271
-			location   	(16, 4665)
+			client     	@205
+			supplier   	@190
+			Focus_Src  	@210
+			Focus_Entry 	@202
+			origin     	(5694, 4663)
+			terminus   	(4590, 4663)
+			ordinal    	32)
+		    (object InterMessView "Сообщить, что изменения успешно внесены" @276
+			location   	(16, 4768)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -6005,9 +6087,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @272
-			    Parent_View 	@271
-			    location   	(3951, 4621)
+			label      	(object SegLabel @277
+			    Parent_View 	@276
+			    location   	(3951, 4724)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -6028,15 +6110,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@185
-			supplier   	@168
-			Focus_Src  	@196
-			Focus_Entry 	@181
-			origin     	(4558, 4665)
-			terminus   	(3344, 4665)
-			ordinal    	32)
-		    (object InterMessView "Отрисовка уведомления об успешном редактировании" @273
-			location   	(16, 4770)
+			client     	@190
+			supplier   	@172
+			Focus_Src  	@201
+			Focus_Entry 	@186
+			origin     	(4558, 4768)
+			terminus   	(3344, 4768)
+			ordinal    	33)
+		    (object InterMessView "Отрисовка уведомления об успешном редактировании" @278
+			location   	(16, 4873)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -6047,9 +6129,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @274
-			    Parent_View 	@273
-			    location   	(2272, 4726)
+			label      	(object SegLabel @279
+			    Parent_View 	@278
+			    location   	(2272, 4829)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -6070,15 +6152,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@168
-			supplier   	@150
-			Focus_Src  	@180
-			Focus_Entry 	@154
-			origin     	(3312, 4770)
-			terminus   	(1232, 4770)
-			ordinal    	33)
-		    (object InterMessView "Выйти из системы" @275
-			location   	(16, 4960)
+			client     	@172
+			supplier   	@153
+			Focus_Src  	@185
+			Focus_Entry 	@157
+			origin     	(3312, 4873)
+			terminus   	(1232, 4873)
+			ordinal    	34)
+		    (object InterMessView "Выйти из системы" @280
+			location   	(16, 5063)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -6089,9 +6171,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @276
-			    Parent_View 	@275
-			    location   	(2271, 4916)
+			label      	(object SegLabel @281
+			    Parent_View 	@280
+			    location   	(2271, 5019)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -6112,15 +6194,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@150
-			supplier   	@168
-			Focus_Src  	@155
-			Focus_Entry 	@182
-			origin     	(1231, 4960)
-			terminus   	(3312, 4960)
-			ordinal    	34)
-		    (object InterMessView "Выйти из системы" @277
-			location   	(16, 5065)
+			client     	@153
+			supplier   	@172
+			Focus_Src  	@158
+			Focus_Entry 	@187
+			origin     	(1231, 5063)
+			terminus   	(3312, 5063)
+			ordinal    	35)
+		    (object InterMessView "Выйти из системы" @282
+			location   	(16, 5168)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -6131,9 +6213,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @278
-			    Parent_View 	@277
-			    location   	(2503, 5021)
+			label      	(object SegLabel @283
+			    Parent_View 	@282
+			    location   	(2503, 5124)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -6154,15 +6236,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@156
-			supplier   	@168
-			Focus_Src  	@163
-			Focus_Entry 	@183
-			origin     	(1695, 5065)
-			terminus   	(3312, 5065)
-			ordinal    	35)
-		    (object InterMessView "Вызвать функцию выхода из системы" @279
-			location   	(16, 5170)
+			client     	@159
+			supplier   	@172
+			Focus_Src  	@167
+			Focus_Entry 	@188
+			origin     	(1695, 5168)
+			terminus   	(3312, 5168)
+			ordinal    	36)
+		    (object InterMessView "Вызвать функцию выхода из системы" @284
+			location   	(16, 5273)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -6173,9 +6255,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @280
-			    Parent_View 	@279
-			    location   	(3950, 5126)
+			label      	(object SegLabel @285
+			    Parent_View 	@284
+			    location   	(3950, 5229)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -6196,15 +6278,15 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@168
-			supplier   	@185
-			Focus_Src  	@182
-			Focus_Entry 	@198
-			origin     	(3343, 5170)
-			terminus   	(4558, 5170)
-			ordinal    	36)
-		    (object InterMessView "Удалить все активные токены пользователя(user_id)" @281
-			location   	(16, 5275)
+			client     	@172
+			supplier   	@190
+			Focus_Src  	@187
+			Focus_Entry 	@203
+			origin     	(3343, 5273)
+			terminus   	(4558, 5273)
+			ordinal    	37)
+		    (object InterMessView "Удалить все активные токены пользователя(user_id)" @286
+			location   	(16, 5378)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -6215,9 +6297,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @282
-			    Parent_View 	@281
-			    location   	(5142, 5232)
+			label      	(object SegLabel @287
+			    Parent_View 	@286
+			    location   	(5142, 5335)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -6238,15 +6320,15 @@
 			    height     	44
 			    orientation 	0)
 			line_color 	3342489
-			client     	@185
-			supplier   	@200
-			Focus_Src  	@198
-			Focus_Entry 	@206
-			origin     	(4589, 5275)
-			terminus   	(5694, 5275)
-			ordinal    	37)
-		    (object InterMessView "Подтвердить удаление" @283
-			location   	(16, 5380)
+			client     	@190
+			supplier   	@205
+			Focus_Src  	@203
+			Focus_Entry 	@211
+			origin     	(4589, 5378)
+			terminus   	(5694, 5378)
+			ordinal    	38)
+		    (object InterMessView "Подтвердить удаление" @288
+			location   	(16, 5483)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -6257,9 +6339,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @284
-			    Parent_View 	@283
-			    location   	(5142, 5336)
+			label      	(object SegLabel @289
+			    Parent_View 	@288
+			    location   	(5142, 5439)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -6280,15 +6362,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@200
-			supplier   	@185
-			Focus_Src  	@206
-			Focus_Entry 	@199
-			origin     	(5694, 5380)
-			terminus   	(4590, 5380)
-			ordinal    	38)
-		    (object InterMessView "Выход из системы" @285
-			location   	(16, 5485)
+			client     	@205
+			supplier   	@190
+			Focus_Src  	@211
+			Focus_Entry 	@204
+			origin     	(5694, 5483)
+			terminus   	(4590, 5483)
+			ordinal    	39)
+		    (object InterMessView "Выход из системы" @290
+			location   	(16, 5588)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -6299,9 +6381,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @286
-			    Parent_View 	@285
-			    location   	(3951, 5441)
+			label      	(object SegLabel @291
+			    Parent_View 	@290
+			    location   	(3951, 5544)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -6322,15 +6404,15 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@185
-			supplier   	@168
-			Focus_Src  	@198
-			Focus_Entry 	@184
-			origin     	(4558, 5485)
-			terminus   	(3344, 5485)
-			ordinal    	39)
-		    (object InterMessView "Направить на страницу авторизации" @287
-			location   	(16, 5590)
+			client     	@190
+			supplier   	@172
+			Focus_Src  	@203
+			Focus_Entry 	@189
+			origin     	(4558, 5588)
+			terminus   	(3344, 5588)
+			ordinal    	40)
+		    (object InterMessView "Направить на страницу авторизации" @292
+			location   	(16, 5693)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -6341,9 +6423,9 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @288
-			    Parent_View 	@287
-			    location   	(2744, 5546)
+			label      	(object SegLabel @293
+			    Parent_View 	@292
+			    location   	(2744, 5649)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -6364,13 +6446,55 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@168
-			supplier   	@164
-			Focus_Src  	@182
-			Focus_Entry 	@167
-			origin     	(3312, 5590)
-			terminus   	(2176, 5590)
-			ordinal    	40)))))
+			client     	@172
+			supplier   	@168
+			Focus_Src  	@187
+			Focus_Entry 	@171
+			origin     	(3312, 5693)
+			terminus   	(2176, 5693)
+			ordinal    	41)
+		    (object InterMessView "Войти в личный кабинет" @294
+			location   	(16, 657)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @295
+			    Parent_View 	@294
+			    location   	(2503, 613)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"6964F5C4005D"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	444
+			    justify    	0
+			    label      	"Войти в личный кабинет"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@159
+			supplier   	@172
+			Focus_Src  	@161
+			Focus_Entry 	@174
+			origin     	(1695, 657)
+			terminus   	(3312, 657)
+			ordinal    	1)))))
     root_subsystem 	(object SubSystem "Component View"
 	quid       	"39C9260C00D7"
 	physical_models 	(list unit_reference_list
